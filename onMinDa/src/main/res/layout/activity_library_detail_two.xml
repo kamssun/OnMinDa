@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+         >
+
+        <LinearLayout
+            android:id="@+id/full_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/TitleText"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:text="文摘附注:" />
+
+            <TextView
+                android:id="@+id/library_detail_page_two_digest"
+                style="@style/textview_blod_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:visibility="gone"
+                style="@style/TitleText"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dip"
+                android:singleLine="true"
+                android:text="简介:" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/library_detail_page_two_intro"
+                style="@style/textview_blod_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_below="@id/full_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/library_detail_page_two_douban_href"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_selector"
+        android:text="豆瓣书评"
+        android:textColor="@android:color/white"
+        android:textSize="20.0sp" />
+
+</RelativeLayout>

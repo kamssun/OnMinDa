@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string-array name="losts">
+        <item>全部</item>
+        <item>电子数码</item>
+        <item>卡类证件</item>
+        <item>随身物品</item>
+        <item>书籍资料</item>
+        <item>衣服饰品</item>
+        <item>随身物品</item>
+        <item>其他物品</item>
+    </string-array>
+    
+    <string-array name="types">
+        <item>全部</item>
+        <item>可借</item>
+    </string-array>
+    
+    <string-array name="dianping_types">
+        <item>美食</item>
+        <item>休闲娱乐</item>
+        <item>电影</item>
+        <item>生活服务</item>
+        <item>酒店</item>
+        <item>购物</item>
+        <item>丽人</item>
+    </string-array>
+    
+    <string-array name="bookstore_top">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
+    <string-array name="bookstore_top_value">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>1</item>
+        <item>10</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+    
+    <string-array name="poi_types">
+        <item>学校大门</item>
+        <item>手机营业厅</item>
+        <item>会堂/礼堂</item>
+    </string-array>
+    
+    <!--  食堂       -->
+    <string-array name="mess_hall_latitude">
+        <item>30.48877</item>
+        <item>30.48765</item>
+        <item>30.48678</item>
+        <item>30.48728</item>
+        <item>30.49021</item>
+        <item>30.49609</item>
+    </string-array>
+    
+    <string-array name="mess_hall_longitude">
+        <item>114.398080</item>
+        <item>114.398080</item>
+        <item>114.398400</item>
+        <item>114.399000</item>
+        <item>114.401300</item>
+        <item>114.400750</item>
+    </string-array>
+    
+    <string-array name="mess_hall_title">
+        <item>一食堂</item>
+        <item>二食堂</item>
+        <item>三食堂</item>
+        <item>清真食堂</item>
+        <item>快餐厅</item>
+        <item>教工食堂</item>
+    </string-array>
+    
+    <!--  超市      -->
+    <string-array name="supermarket_latitude">
+        <item>30.488856</item>
+        <item>30.485895</item>
+        <item>30.488253</item>
+        <item>30.485491</item>
+    </string-array>
+    
+    <string-array name="supermarket_longitude">
+        <item>114.398233</item>
+        <item>114.397578</item>
+        <item>114.401800</item>
+        <item>114.398965</item>
+    </string-array>
+    
+    <string-array name="supermarket_title">
+        <item>大学生购物中心</item>
+        <item>民大超市</item>
+        <item>学生超市</item>
+        <item>体育馆超市</item>
+    </string-array>
+    
+    <!--  ATM       -->
+    <string-array name="ATM_latitude">
+        <item>30.488852</item>
+        <item>30.488852</item>
+        <item>30.494014</item>
+    </string-array>
+    
+    <string-array name="ATM_longitude">
+        <item>114.397811</item>
+        <item>114.397811</item>
+        <item>114.402577</item>
+    </string-array>
+    
+    <string-array name="ATM_title">
+        <item>工商ATM</item>
+        <item>邮政ATM</item>
+        <item>农行ATM</item>
+    </string-array>
+    
+    <!--  药店       -->
+    <string-array name="drug_store_latitude">
+        <item>30.493384</item>
+        <item>30.488856</item>
+        <item>30.49355</item>
+    </string-array>
+    
+    <string-array name="drug_store_longitude">
+        <item>114.40255</item>
+        <item>114.398233</item>
+        <item>114.403664</item>
+    </string-array>
+    
+    <string-array name="drug_store_title">
+        <item>大购二楼药店</item>
+        <item>正大门对过药店</item>
+        <item>校医院</item>
+    </string-array>
+    
+    <!--   教学楼     -->
+    <string-array name="teaching_building_latitude">
+        <item>30.493341</item>
+        <item>30.493438</item>
+        <item>30.493582</item>
+        <item>30.492995</item>
+        <item>30.490346</item>
+        <item>30.495792</item>
+        <item>30.495313</item>
+        <item>30.496531</item>
+        <item>30.497410</item>
+        <item>30.497546</item>
+    </string-array>
+    
+    <string-array name="teaching_building_longitude">
+        <item>114.400201</item>
+        <item>114.399971</item>
+        <item>114.398795</item>
+        <item>114.401346</item>
+        <item>114.40038</item>
+        <item>114.398727</item>
+        <item>114.397268</item>
+        <item>114.398763</item>
+        <item>114.400205</item>
+        <item>114.39884</item>
+    </string-array>
+    
+    <string-array name="teaching_building_title">
+        <item>文传学院_1号教学楼</item>
+        <item>民院_2号教学楼</item>
+        <item>3号教学楼</item>
+        <item>电信学院_4号教学楼</item>
+        <item>化材院</item>
+        <item>8号教学楼</item>
+        <item>计科学院_9号教学楼</item>
+        <item>英语学院_10号教学楼</item>
+        <item>美术学院_12号教学楼</item>
+        <item>15号教学楼</item>
+    </string-array>
+    
+    <!--  学校大门      -->
+    <string-array name="door_latitude">
+        <item>30.495129</item>
+        <item>30.49744</item>
+        <item>30.490018</item>
+        <item>30.485404</item>
+        <item>30.485435</item>
+    </string-array>
+    
+    <string-array name="door_longitude">
+        <item>114.402195</item>
+        <item>114.40279</item>
+        <item>114.40197</item>
+        <item>114.398208</item>
+        <item>114.395595</item>
+    </string-array>
+    
+    <string-array name="door_title">
+        <item>北一门 </item>
+        <item>北二门</item>
+        <item>南一门 </item>
+        <item>南二门</item>
+        <item>南三门</item>
+    </string-array>
+    
+    <!--  手机营业厅      -->
+    <string-array name="phone_latitude">
+        <item>30.485902</item>
+        <item>30.48549</item>
+        <item>30.485653</item>
+    </string-array>
+    
+    <string-array name="phone_longitude">
+        <item>114.397163</item>
+        <item>114.3987</item>
+        <item>114.396037</item>
+    </string-array>
+    
+    <string-array name="phone_title">
+        <item>电信营业厅 </item>
+        <item>移动营业厅 </item>
+        <item>联通营业厅</item>
+    </string-array>
+    
+    <!--  会堂 /礼堂      -->
+    <string-array name="hall_latitude">
+        <item>30.496099</item>
+        <item>30.493174</item>
+        <item>30.495597</item>
+    </string-array>
+    
+    <string-array name="hall_longitude">
+        <item>114.401907</item>
+        <item>114.399841</item>
+        <item>114.397447</item>
+    </string-array>
+    
+    <string-array name="hall_title">
+        <item>大礼堂</item>
+        <item>会议中心</item>
+        <item>学术会堂</item>
+    </string-array>
+    
+    <!-- 学年 -->
+    <string-array name="grade_years">
+        <item>2013~2014</item>
+        <item>2012~2013</item>
+        <item>2011~2012</item>
+        <item>2010~2011</item>
+        <item>2009~2010</item>
+        <item>2008~2009</item>
+        <item>2007~2008</item>
+    </string-array>
+    
+     <!-- 学期 -->
+    <string-array name="grade_semesters">
+        <item>全年</item>
+        <item>第一学期</item>
+        <item>第二学期</item>
+    </string-array>
+    
+</resources>

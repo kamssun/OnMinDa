@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/tab_view_bg" >
+
+    <RelativeLayout
+        android:id="@+id/email"
+        style="@style/attr_list_item_single"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="邮件" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/weibo"
+        style="@style/attr_list_item_single"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="新浪微博" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+</LinearLayout>

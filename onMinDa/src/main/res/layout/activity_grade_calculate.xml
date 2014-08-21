@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout style="@style/attr_list_item_top" >
+
+                <TextView
+                    android:id="@+id/course_name_title"
+                    style="@style/form_title"
+                    android:text="计算结果" />
+
+                <TextView
+                    android:id="@+id/result"
+                    style="@style/form_content"
+                    android:layout_marginLeft="70dp" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/attr_list_item_last" >
+
+                <TextView
+                    style="@style/form_title"
+                    android:text="课程数目" />
+
+                <TextView
+                    android:id="@+id/course_num"
+                    style="@style/form_content" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

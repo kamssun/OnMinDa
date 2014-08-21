@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                style="@style/SettingItemTop"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:background="@drawable/setting_list_top"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="物品名称:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/lost_detail_name"
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="丢失时间:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/lost_detail_time"
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="丢失地点:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/lost_detail_place"
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="物品详情: "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/lost_detail_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/SettingItemTop"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="手机:" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/lost_detail_phone"
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="QQ:" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/lost_detail_qq"
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemBottom"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="邮箱:" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/lost_detail_mail"
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ListItem" 
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/news_list_title"
+        style="@style/ListTitleText"
+        android:layout_width="match_parent"
+        android:ellipsize="end"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/news_list_digest"
+        style="@style/ListSubtitleText"
+        android:layout_width="match_parent"
+        android:ellipsize="end"
+        android:maxLines="2" />
+
+    <TextView
+        android:layout_marginRight="5dp"
+        android:layout_gravity="right"
+        android:id="@+id/news_list_time"
+        style="@style/ListSubtitleText"
+        android:layout_width="match_parent"
+		android:gravity="right"
+        android:ellipsize="end"
+        android:singleLine="true" />
+</LinearLayout>

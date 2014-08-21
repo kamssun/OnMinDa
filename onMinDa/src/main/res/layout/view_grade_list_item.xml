@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ListItem"
+    android:layout_marginLeft="10dp"
+    android:paddingTop="24dp"
+    android:layout_centerVertical="true"
+    android:paddingBottom="24dp" >
+    
+    <TextView
+        android:paddingLeft="10dp"
+        android:id="@+id/serial_num"
+        style="@style/ListTitleText"
+        android:layout_width="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true" />
+    
+    <TextView
+        android:layout_toRightOf="@id/serial_num"
+        android:id="@+id/course_name"
+        android:layout_marginRight="10dp"
+        style="@style/ListTitleText"
+        android:layout_width="wrap_content"
+        android:ellipsize="end"
+        android:maxLength="16"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/course_grade"
+        style="@style/ListSubtitleText"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/course_name"
+        android:textColor="#168CDD"
+        android:textSize="19sp"
+        android:ellipsize="end"
+        android:singleLine="true" />
+ 
+    <ImageView
+        android:id="@+id/sub_menu"
+		android:layout_width="24dip"
+		android:layout_height="24dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/list_item_navigation"/>
+    
+    <CheckBox
+        android:visibility="gone"
+        android:button="@drawable/checkbox_round_selector"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:id="@+id/checkbox"
+        android:layout_width="34dip"
+		android:layout_height="34dip"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ListItem"
+    android:layout_marginLeft="10dp" >
+    <TextView
+        android:layout_marginRight="20dp"
+        android:id="@+id/library_list_title"
+        style="@style/ListTitleText"
+        android:layout_width="match_parent"
+        android:ellipsize="end"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_marginRight="20dp"
+        android:id="@+id/library_list_auther"
+        style="@style/ListSubtitleText"
+        android:layout_width="match_parent"
+        android:layout_below="@id/library_list_title"
+        android:layout_alignLeft="@id/library_list_title"
+        android:ellipsize="end"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_marginRight="20dp"
+        android:id="@+id/library_list_publisher"
+        style="@style/ListSubtitleText"
+        android:layout_width="match_parent"
+        android:layout_alignRight="@id/library_list_title"
+        android:ellipsize="end"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_marginRight="20dp"
+        android:id="@+id/library_list_id"
+        style="@style/ListSubtitleText"
+        android:layout_width="match_parent"
+        android:layout_alignLeft="@id/library_list_auther"
+        android:layout_below="@id/library_list_auther"
+        android:ellipsize="end"
+        android:singleLine="true" />
+ 
+    <ImageView
+		android:layout_width="16dip"
+		android:layout_height="16dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="14dip"
+        android:src="@drawable/list_item_navigation"/>
+</RelativeLayout>

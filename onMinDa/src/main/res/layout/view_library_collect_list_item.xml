@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:slide="http://schemas.android.com/apk/res/com.tjerkw.slideexpandable.library"
+    style="@style/ListItem"
+    android:layout_width="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/collect_title"
+            style="@style/ListTitleText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/collect_auther"
+            android:layout_below="@id/collect_title"
+            style="@style/ListSubtitleText"
+            android:layout_marginTop="5.0dip"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/collect_publisher"
+            android:layout_below="@id/collect_auther"
+            style="@style/ListSubtitleText"
+            android:layout_marginTop="5.0dip"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/collect_id"
+            android:layout_below="@id/collect_publisher"
+            style="@style/ListSubtitleText"
+            android:layout_marginTop="5.0dip"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/collect_place"
+            android:layout_below="@id/collect_id"
+            style="@style/ListSubtitleText"
+            android:layout_marginTop="5.0dip"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/expandable_toggle_button"
+            android:layout_alignParentRight="true"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:text="more" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/expandable"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="#24252D"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/buttonA"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_search" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/buttonB"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_search" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/buttonC"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_search" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

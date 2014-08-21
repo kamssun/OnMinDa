@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#DFE1E0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/news_listview_three"
+        style="@style/ListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="false"
+        android:smoothScrollbar="true" />
+
+    <ProgressBar
+        android:id="@+id/news_loading_three"
+        style="@style/ListSpinner"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/news_prompt_three"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/actionbar_text"
+        android:visibility="gone"
+        android:textSize="15sp" />
+    
+    <RelativeLayout
+        android:id="@+id/news_three_status_prompt"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/news_bottom"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ProgressBar
+                android:id="@+id/news_three_status_prompt_pb"
+                style="@style/ListSpinnerNoInner"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/news_three_status_prompt_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="正在加载..."
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

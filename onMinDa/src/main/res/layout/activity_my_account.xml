@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/tab_view_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/library"
+        style="@style/attr_list_item_single" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="图书馆" />
+
+        <TextView
+            android:id="@+id/library_account"
+            style="@style/form_content" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/admin_system"
+        style="@style/attr_list_item_single" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="教务系统" />
+
+        <TextView
+            android:id="@+id/admin_system_account"
+            style="@style/form_content" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/account_about" />
+</LinearLayout>

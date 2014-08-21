@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tuangou_item"
+    style="@style/ListItem" >
+
+    <ImageView
+        android:id="@+id/image"
+        android:padding="3dp"
+        android:scaleType="fitXY"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/ListTitleText"
+        android:layout_marginRight="14dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_toRightOf="@id/image"
+        android:singleLine="true"
+        android:ellipsize="end" />
+    
+    <TextView
+        android:id="@+id/description"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="1dp"
+        style="@style/ListSubtitleText"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/title"
+        android:layout_below="@id/title"
+        android:ellipsize="end"
+        android:maxLines="2" />
+
+    <TextView
+        android:id="@+id/current_price"
+        android:layout_alignLeft="@id/title"
+        android:layout_below="@id/description"
+        android:layout_marginTop="2dp"
+        style="@style/ListSubtitleText"
+        android:layout_width="wrap_content"
+        android:ellipsize="end"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:singleLine="true" />
+    
+    <TextView
+        android:layout_alignBaseline="@id/current_price"
+        android:layout_alignBottom="@id/image"
+        android:id="@+id/original_price"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@id/current_price"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        style="@style/ListSubtitleText"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/description"
+        android:singleLine="true" />
+
+    <ImageView
+		android:layout_width="15dip"
+		android:layout_height="15dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dip"
+        android:src="@drawable/list_item_navigation"/>
+</RelativeLayout>

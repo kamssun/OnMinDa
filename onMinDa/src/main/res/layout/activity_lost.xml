@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DFE1E0"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+<!-- 
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lost_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="#19000000"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:smoothScrollbar="true" />
+ -->  
+    <ListView
+        android:id="@+id/lost_listview"
+        style="@style/ListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
+
+    <ProgressBar
+        android:id="@+id/lost_list_loading"
+        style="@style/ListSpinner"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

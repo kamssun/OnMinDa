@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="名称" />
+
+                    <TextView
+                        android:id="@+id/Lab_name"
+                        style="@style/form_content"
+                        android:layout_marginLeft="70dp" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="周次" />
+
+                    <TextView
+                        android:id="@+id/WEEKNUM"
+                        style="@style/form_content" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="星期" />
+
+                    <TextView
+                        android:id="@+id/week"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="时段" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="老师" />
+
+                    <TextView
+                        android:id="@+id/teacherName"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="地点" />
+
+                    <TextView
+                        android:id="@+id/LabLocation"
+                        style="@style/form_content" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="操作成绩" />
+
+                    <TextView
+                        android:id="@+id/OperationScore"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="报告成绩" />
+
+                    <TextView
+                        android:id="@+id/ReportScore"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="总成绩" />
+
+                    <TextView
+                        android:id="@+id/TotalScore"
+                        style="@style/form_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

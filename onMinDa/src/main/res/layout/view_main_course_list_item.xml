@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ListItem"
+    android:paddingBottom="2dp" >
+
+    <RelativeLayout
+        android:id="@+id/item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/course_time"
+            style="@style/ListTitleText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="#168CDD" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:padding="15dp" >
+
+            <TextView
+                android:id="@+id/course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:ellipsize="end"
+                android:maxLength="8"
+                android:singleLine="true"
+                android:textColor="#5E5E5E"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_marginTop="5.0dip"
+                android:ellipsize="end"
+                android:maxLength="4"
+                android:singleLine="true"
+                android:textColor="#5E5E5E"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5.0dip"
+                android:ellipsize="end"
+                android:maxLength="8"
+                android:singleLine="true"
+                android:textColor="#5E5E5E"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

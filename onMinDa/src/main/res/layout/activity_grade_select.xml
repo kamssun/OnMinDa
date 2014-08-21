@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/year_view"
+        style="@style/attr_list_item_single"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="学年" />
+
+        <TextView
+            android:id="@+id/year"
+            style="@style/form_content" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/semester_view"
+        style="@style/attr_list_item_single"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="学期" />
+
+        <TextView
+            android:id="@+id/semester"
+            style="@style/form_content"
+            android:text="全年" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+</LinearLayout>

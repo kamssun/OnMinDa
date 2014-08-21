@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        android:id="@+id/course_detial_name"
+                        style="@style/form_title"
+                        android:text="课程名称" />
+
+                    <EditText
+                        android:id="@+id/course_edit_name"
+                        style="@style/form_content1"
+                        android:layout_toRightOf="@id/course_detial_name" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        android:id="@+id/course_detial_teacher"
+                        style="@style/form_title"
+                        android:text="代课老师" />
+
+                    <EditText
+                        android:id="@+id/edit_teacher"
+                        style="@style/form_content1"
+                        android:layout_toRightOf="@id/course_detial_teacher" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        android:id="@+id/course_detial_place"
+                        style="@style/form_title"
+                        android:text="上课地点" />
+
+                    <EditText
+                        android:id="@+id/edit_place"
+                        style="@style/form_content1"
+                        android:layout_toRightOf="@id/course_detial_place" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item" >
+
+                    <TextView
+                        android:id="@+id/course_detial_time"
+                        style="@style/form_title"
+                        android:text="上课时间" />
+
+                    <TextView
+                        android:id="@+id/textview_course_detial_time_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toRightOf="@id/course_detial_time"
+                        android:padding="10dp"
+                        android:text="第"
+                        android:textColor="#5D478B"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edit_course_detial_time_start"
+                        style="@style/form_content2"
+                        android:layout_toRightOf="@id/textview_course_detial_time_1"
+                        android:numeric="integer" />
+
+                    <TextView
+                        android:id="@+id/textview_course_detial_time_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toRightOf="@id/edit_course_detial_time_start"
+                        android:padding="10dp"
+                        android:text="-"
+                        android:textColor="#5D478B"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edit_course_detial_time_end"
+                        style="@style/form_content2"
+                        android:layout_toRightOf="@id/textview_course_detial_time_2"
+                        android:numeric="integer" >
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/textview_duration_weeks_2"
+                        style="@style/form_content2"
+                        android:layout_toRightOf="@id/edit_course_detial_time_end"
+                        android:text="节" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        android:id="@+id/course_detial_duration"
+                        style="@style/form_title"
+                        android:text="上课周数" />
+
+                    <EditText
+                        android:id="@+id/edit_duration_weeks_start"
+                        style="@style/form_content2"
+                        android:layout_toRightOf="@id/course_detial_duration"
+                        android:numeric="integer" />
+
+                    <TextView
+                        android:id="@+id/textview_duration_weeks_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@id/edit_duration_weeks_start"
+                        android:layout_alignParentBottom="true"
+                        android:padding="10dp"
+                        android:text="-"
+                        android:textColor="#5D478B"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edit_duration_weeks_start_end"
+                        style="@style/form_content2"
+                        android:layout_alignBottom="@+id/textview_duration_weeks_1"
+                        android:layout_toRightOf="@+id/textview_duration_weeks_1"
+                        android:numeric="integer" >
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/textview_duration_weeks_2"
+                        style="@style/form_content2"
+                        android:layout_alignBottom="@+id/edit_duration_weeks_start_end"
+                        android:layout_toRightOf="@+id/edit_duration_weeks_start_end"
+                        android:text="周" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

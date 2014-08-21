@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout style="@style/attr_list_item_top" >
+                <TextView
+                    style="@style/form_title"
+                    android:text="姓名" />
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/form_content" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/attr_list_item" >
+                <TextView
+                    style="@style/form_title"
+                    android:text="证件号" />
+
+                <TextView
+                    android:id="@+id/student_id"
+                    style="@style/form_content" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/attr_list_item_last" >
+
+                <TextView
+                    style="@style/form_title"
+                    android:text="条码号" />
+
+                <TextView
+                    android:id="@+id/bar_code_id"
+                    style="@style/form_content" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/attr_list_item_single" >
+                <TextView
+                    style="@style/form_title"
+                    android:text="累计借书" />
+
+                <TextView
+                    android:id="@+id/borrow_num"
+                    style="@style/form_content" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

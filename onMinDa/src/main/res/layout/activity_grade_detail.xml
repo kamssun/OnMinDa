@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        android:id="@+id/course_name_title"
+                        style="@style/form_title"
+                        android:text="课程名称" />
+
+                    <TextView
+                        android:layout_marginLeft="70dp"
+                        android:id="@+id/course_name"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="课程号" />
+
+                    <TextView
+                        android:id="@+id/course_ID"
+                        style="@style/form_content" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="分数" />
+
+                    <TextView
+                        android:id="@+id/course_grade"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="学分" />
+
+                    <TextView
+                        android:id="@+id/course_credit"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="绩点" />
+
+                    <TextView
+                        android:id="@+id/course_GPA"
+                        style="@style/form_content" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout style="@style/attr_list_item_top" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="日期" />
+
+                    <TextView
+                        android:id="@+id/course_date"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="类别" />
+
+                    <TextView
+                        android:id="@+id/course_type"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="性质" />
+
+                    <TextView
+                        android:id="@+id/course_property"
+                        style="@style/form_content" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/attr_list_item_last" >
+
+                    <TextView
+                        style="@style/form_title"
+                        android:text="修读方式" />
+
+                    <TextView
+                        android:id="@+id/course_study_type"
+                        style="@style/form_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

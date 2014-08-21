@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/library_detail_title"
+        style="@style/TitleText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_bg"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:paddingLeft="15dip"
+        android:textSize="28sp"
+        android:typeface="sans" />
+
+    <LinearLayout
+        android:id="@+id/detail_auther"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/library_detail_title"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="作者"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/library_detail_auther"
+            style="@style/textview_blod_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_publisher"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_auther"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="5dip"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="出版社"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/library_detail_publisher"
+            style="@style/textview_blod_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_state"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_publisher"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="15dip"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/TitleText"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="索书号" />
+
+        <TextView
+            style="@style/TitleText"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="馆藏地点" />
+
+        <TextView
+            style="@style/TitleText"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="馆藏状态" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/detail_sepa3"
+        style="@style/HeaderSeparator"
+        android:layout_below="@id/detail_state"
+        android:background="@color/red" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/detail_sepa3"
+        android:orientation="vertical" >
+        <ListView
+            android:id="@+id/library_detail_listview"
+            style="@style/ListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+			android:layout_alignParentBottom="true"
+            android:id="@+id/adLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

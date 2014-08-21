@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E2226"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#2B3237" >
+        <TextView
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:layout_marginLeft="21dp"
+            android:layout_width="fill_parent"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="个人中心" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        style="@style/ListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#2C3034"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/menu_item_bg" >
+    </ListView>
+
+</LinearLayout>

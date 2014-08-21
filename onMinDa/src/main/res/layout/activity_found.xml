@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                style="@style/SettingItemTop"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:background="@drawable/setting_list_top"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="物品类型"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:entries="@array/losts"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemTop"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/setting_list_top"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="物品详情"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemBottom"
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:orientation="horizontal" >
+
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="物品的特征信息"
+                        android:textColor="@color/black" />
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemTop"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:background="@drawable/setting_list_top"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="捡取地点: "
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/lost_detail_staff_name"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemBottom"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="捡取时间: "
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/lost_detail_time"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemTop"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:background="@drawable/setting_list_top"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="联系方式(至少填写一个)"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="手机:"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/lost_detail_staff_name"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="QQ:"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/lost_detail_time"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/SettingItemBottom"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MySettingText"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:inputType="textWebEmailAddress"
+                    android:text="邮箱:"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/lost_detail_time"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:inputType="textWebEmailAddress"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

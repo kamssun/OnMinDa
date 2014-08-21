@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/tab_view_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/personal_info"
+        style="@style/attr_list_item_single" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="个人信息" />
+
+        <TextView style="@style/form_content" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/book_collect"
+        style="@style/attr_list_item_top" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="图书收藏" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/current_borrow"
+        style="@style/attr_list_item_last" >
+
+        <TextView
+            style="@style/form_title"
+            android:text="当前借阅" />
+
+        <ImageView
+            style="@style/form_submenu"
+            android:clickable="true"
+            android:scaleType="matrix" />
+    </RelativeLayout>
+
+</LinearLayout>
