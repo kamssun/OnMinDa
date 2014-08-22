@@ -6,6 +6,8 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+
+import com.newthread.android.util.*;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -46,10 +48,6 @@ import com.newthread.android.R;
 import com.newthread.android.bean.EverydayCourse;
 import com.newthread.android.bean.SingleCourseInfo;
 import com.newthread.android.global.HandleMessage;
-import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.Logger;
-import com.newthread.android.util.MyPreferenceManager;
-import com.newthread.android.util.StringUtils;
 
 /**
  * 登录后，从教务系统获取课程信息
@@ -72,7 +70,7 @@ public class CourseChartLoginActivity extends SherlockActivity {
 	private ArrayList<EverydayCourse> list; // 临时数据,用于转化(假设每天有6节课)
 	private static final String URL1 = "http://ids.scuec.edu.cn/amserver/UI/Login?goto=http://my.scuec.edu.cn/index.portal"; // 个人图书馆URL
 	private static final String URL2 = "http://ssfw.scuec.edu.cn/ssfw/j_spring_ids_security_check"; // URL
-	private static final String URL3 = "http://ssfw.scuec.edu.cn/ssfw/pkgl/kcbxx/4/2013-2014-1.do"; // 课程表URL
+	private static final String URL3 = "http://ssfw.scuec.edu.cn/ssfw/pkgl/kcbxx/4/"+ TimeUtil.getChangeCouserUrl()+".do"; // 课程表URL
 	private static final boolean Debug = false;
 
 	@Override
@@ -104,7 +102,7 @@ public class CourseChartLoginActivity extends SherlockActivity {
 			case HandleMessage.QUERY_SUCCESS:
 				// 查询成功
 				performSuccess();
-
+                Log.v("0000",URL3);
 				Toast.makeText(getApplicationContext(), "登录成功",
 						Toast.LENGTH_SHORT).show();
 				break;
