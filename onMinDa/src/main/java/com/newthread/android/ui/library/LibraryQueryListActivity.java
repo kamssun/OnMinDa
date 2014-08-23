@@ -228,7 +228,7 @@ public class LibraryQueryListActivity extends SherlockFragmentActivity implement
 				} else {
 					url = "http://coin.lib.scuec.edu.cn/opac/openlink.php?location=ALL&title="
 							+ new String(keyStr.trim().getBytes(), "ISO-8859-1")
-							+ "&doctype=ALL&lang_code=ALL&match_flag=forward&displaypg=20&showmode=list&orderby=DESC&sort=CATA_DATE&onlylendable=yes&count=1231&with_ebook=";
+							+ "&doctype=ALL&lang_code=ALL&match_flag=forward&displaypg=20&showmode=list&orderby=DESC&sort=CATA_DATE&onlylendable=yes&with_ebook=";
 				}
 			}
 		} catch (Exception e) {
