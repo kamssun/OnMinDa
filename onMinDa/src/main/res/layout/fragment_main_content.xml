@@ -3,8 +3,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-    <ScrollView
+    <com.newthread.android.view.MyScrollView
+            android:id="@+id/scroll_view"
             android:scrollbars="none"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -20,10 +20,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="200dp"
                     android:src="@drawable/main_titlebar_bg_5"/>
-
-            <!--<include-->
-            <!--android:id="@+id/on_campus_title_bar"-->
-            <!--layout="@layout/view_title_bar"/>-->
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -153,20 +149,30 @@
                         android:textColor="#168CDD"/>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </com.newthread.android.view.MyScrollView>
 
     <RelativeLayout
-            android:id="@+id/view_title_bar_relativelayout"
+            android:id="@+id/title_bar_bg_view"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@color/common_blue"
+            android:alpha="0"
+            >
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/view_title_bar"
             android:layout_width="wrap_content"
-            android:layout_height="200dip"
-            android:background="@color/transparent">
+            android:layout_height="50dp"
+            android:background="@color/transparent"
+            >
 
         <LinearLayout
                 android:id="@+id/titlebar_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="14dp"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
             <ImageView
@@ -178,22 +184,13 @@
         </LinearLayout>
 
         <LinearLayout
-                android:id="@+id/titlebar_left_two"
-                android:layout_width="wrap_content"
-                android:layout_height="43dip"
-                android:layout_marginTop="14dp"
-                android:layout_toRightOf="@id/titlebar_left"
-                android:gravity="center"
-                android:orientation="horizontal">
-        </LinearLayout>
-
-        <LinearLayout
                 android:id="@+id/titlebar_right"
                 android:layout_width="wrap_content"
                 android:layout_height="43dip"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
             <ImageView
@@ -204,51 +201,28 @@
         </LinearLayout>
 
         <TextView
-                android:id="@+id/week_of_semester"
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="70dp"
-                android:background="@drawable/bg_week_num"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-
-                />
-
-        <LinearLayout
-                android:id="@+id/add_centerView"
+                android:id="@+id/title_bar_title"
+                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp">
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                <TextView
-                        android:id="@+id/title_bar_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="人在民大"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="normal"/>
-
-                <TextView
-                        android:id="@+id/city_details_dist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxEms="13"
-                        android:paddingLeft="10dip"
-                        android:singleLine="true"
-                        android:textColor="#fff"
-                        android:textSize="12sp"
-                        android:visibility="gone"/>
-            </LinearLayout>
-        </LinearLayout>
+                android:text="人在民大"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:textStyle="normal"/>
     </RelativeLayout>
+
+    <TextView
+            android:id="@+id/week_of_semester"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/bg_week_num"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            />
+
+
 </RelativeLayout>

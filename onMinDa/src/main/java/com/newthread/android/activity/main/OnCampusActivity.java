@@ -29,6 +29,7 @@ import com.slidingmenu.lib.app.SlidingFragmentActivity;
 public class OnCampusActivity extends SlidingFragmentActivity {
 	private SlidingMenu sm;
 	private Fragment mContent;
+    private boolean isFirstSlideMenu = true;
 	public static final String RESPONSE_METHOD = "method";
 	public static final String RESPONSE_CONTENT = "content";
 	public static final String RESPONSE_ERRCODE = "errcode";
@@ -58,7 +59,6 @@ public class OnCampusActivity extends SlidingFragmentActivity {
 	@Override
 	public void onStart() {
 		super.onStart();
-
 		PushManager.activityStarted(this);
 	}
 	
@@ -92,25 +92,35 @@ public class OnCampusActivity extends SlidingFragmentActivity {
 		// Main
 		if (mContent == null)
 			mContent = new MainContentFragment(getApplicationContext(), sm);
-//			mContent = new OnCampusMainFragment(OnCampusActivity.this, sm);	
 		getSupportFragmentManager().beginTransaction()
 									.replace(R.id.on_campus_main_frame, mContent)
 									.commit();
 
 		// Left Menu
+        final OnCampusLeftFragment leftFragment = new OnCampusLeftFragment(OnCampusActivity.this);
 		setBehindContentView(R.layout.fragment_on_campus_left);
 		getSupportFragmentManager().beginTransaction()
-									.replace(R.id.on_campus_left_frame, new OnCampusLeftFragment(OnCampusActivity.this))
+									.replace(R.id.on_campus_left_frame, leftFragment)
 									.commit();
 		
 		// Right Menu
 		sm.setSecondaryMenu(R.layout.fragment_on_campus_right);
-//		getSlidingMenu().setSecondaryShadowDrawable(R.drawable.shadowright);
 		getSupportFragmentManager().beginTransaction()
 									.replace(R.id.on_campus_right_frame, new OnCampusRightFragment(OnCampusActivity.this))
 									.commit();
 		// 显示菜单
 		sm.showMenu(true);
+
+        sm.setOnOpenListener(new SlidingMenu.OnOpenListener() {
+            @Override
+            public void onOpen() {
+                if (isFirstSlideMenu) {
+                    leftFragment.refreshLogo();
+                    return ;
+                }
+                isFirstSlideMenu = false;
+            }
+        });
 	}
 	
 	// 切换主界面Fragment

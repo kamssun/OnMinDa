@@ -27,6 +27,7 @@ import com.newthread.android.ui.news.NewsActivity;
 @SuppressLint("ValidFragment")
 public class OnCampusLeftFragment extends ListFragment {
 	private Context con;
+    private View logoView;
 	private SimpleAdapter adapter;
 
 	public OnCampusLeftFragment() {
@@ -80,12 +81,16 @@ public class OnCampusLeftFragment extends ListFragment {
 				new int[] { R.id.left_menu_list_title });
 
 		listView.setAdapter(adapter);
-
-        TextView topView = (TextView) view.findViewById(R.id.left_menu_top_view);
-        YoYo.with(Techniques.ZoomInDown)
-                .duration(1000)
-                .playOn(topView);
+        logoView = view.findViewById(R.id.left_menu_top_view);
+        logoView.setVisibility(View.INVISIBLE);
 	}
+
+    public void refreshLogo() {
+        logoView.setVisibility(View.VISIBLE);
+        YoYo.with(Techniques.DropOut)
+                .duration(2000)
+                .playOn(logoView);
+    }
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
