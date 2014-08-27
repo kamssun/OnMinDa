@@ -125,7 +125,9 @@
         <activity
             android:name="com.newthread.android.ui.coursechart.CourseDetialEditActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+                android:name=".ui.exam.ExamArrangeActivity"
+                android:screenOrientation="portrait" />
         <!-- 有米传媒 Android SDK 配置(可直接复制节点) -->
         <!-- SDK 必须配置 -->
         <activity

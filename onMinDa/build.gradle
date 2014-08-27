@@ -76,6 +76,7 @@ dependencies {
     compile project(':library_viewpager')
     compile project(':library_swipelistview')
     compile project(':viewanimations')
+    compile project(':library_kjframe')
 }
 
 task copyNativeLibs(type: Copy) {

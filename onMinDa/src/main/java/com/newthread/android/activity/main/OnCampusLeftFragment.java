@@ -19,6 +19,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.newthread.android.R;
 import com.newthread.android.ui.coursechart.CourseChartLoginActivity;
+import com.newthread.android.ui.exam.ExamArrangeActivity;
 import com.newthread.android.ui.grade.GradeSelect;
 import com.newthread.android.ui.labquery.LabLogin_activity;
 import com.newthread.android.ui.library.LibraryActivity;
@@ -66,16 +67,19 @@ public class OnCampusLeftFragment extends ListFragment {
 		// map2.put("icon", R.drawable.ic_on_campus_right_setting);
 		data.add(map2);
 
-		HashMap<String, Object> map5 = new HashMap<String, Object>();
-		map5.put("title", "成绩查询");
+		HashMap<String, Object> map3 = new HashMap<String, Object>();
+		map3.put("title", "成绩查询");
 		// map5.put("icon", R.drawable.ic_on_campus_right_setting);
-		data.add(map5);
+		data.add(map3);
 
-		HashMap<String, Object> map6 = new HashMap<String, Object>();
-		map6.put("title", "实验查询");
+		HashMap<String, Object> map4 = new HashMap<String, Object>();
+		map4.put("title", "实验查询");
 		// map5.put("icon", R.drawable.ic_on_campus_right_setting);
-		data.add(map6);
-
+		data.add(map4);
+        HashMap<String, Object> map5 = new HashMap<String, Object>();
+        map5.put("title", "考试安排");
+        // map5.put("icon", R.drawable.ic_on_campus_right_setting);
+        data.add(map5);
 		adapter = new SimpleAdapter(con, data, R.layout.view_left_menu_item,
 				new String[] { "title" },
 				new int[] { R.id.left_menu_list_title });
@@ -119,7 +123,11 @@ public class OnCampusLeftFragment extends ListFragment {
 			// 实验查询
 			Intent _intent = new Intent(con, LabLogin_activity.class);
 			startActivity(_intent);
-		}
+		}else if (5 == position) {
+            //
+            Intent _intent = new Intent(con, ExamArrangeActivity.class);
+            startActivity(_intent);
+        }
 
 		((Activity) con).overridePendingTransition(R.anim.in_from_right,
 				R.anim.out_to_left);

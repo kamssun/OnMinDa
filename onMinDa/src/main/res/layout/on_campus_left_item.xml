@@ -9,7 +9,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="10dp"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/kjfram_ic_launcher" />
 
     <TextView
         android:id="@+id/on_campus_left_title"
