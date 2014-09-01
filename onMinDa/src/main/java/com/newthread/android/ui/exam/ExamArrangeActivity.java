@@ -4,37 +4,23 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
-import com.newthread.android.global.HandleMessage;
+import com.newthread.android.adapter.ExamListViewAdpeter;
+import com.newthread.android.bean.ExamArrangeInfo;
 import com.newthread.android.ui.coursechart.CourseChartLoginActivity;
 import com.newthread.android.util.*;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.kymjs.aframe.http.KJHttp;
 import org.kymjs.aframe.http.KJStringParams;
 import org.kymjs.aframe.http.StringCallBack;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +33,8 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
 
 
     private KJHttp kjh;
+    private ListView listView;
+    private ProgressBar progressBar;
     private String account, password;
 
 
@@ -54,6 +42,8 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_list);
+        listView = (ListView) findViewById(R.id.listView);
+        progressBar = (ProgressBar) this.findViewById(R.id.library_list_loading);
         initData();
         initView();
     }
@@ -63,38 +53,41 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
         account = MyPreferenceManager.getString("admin_system_account", "");
         password = MyPreferenceManager.getString("admin_system_password", "");
         if (!needLogin()) {
-                   kjh = new KJHttp();
-                   KJStringParams params = new KJStringParams();
-                   params.put("IDToken1", account);
-                   params.put("IDToken2", password);
-                   kjh.post(URL1, params, new StringCallBack() {
-                       @Override
-                       public void onSuccess(String json) {
-                           FileUtil.write(getApplicationContext(),"1.txt",json);
-                           kjh.get(URL2, new StringCallBack() {
-                               @Override
-                               public void onSuccess(String json) {
-                                   FileUtil.write(getApplicationContext(),"2.txt",json);
-                                   KJStringParams params = new KJStringParams();
-                                   params.put("xnxqdm", "2013-2014-2");
-                                   kjh.post(URL3, params, new StringCallBack() {
-                                       @Override
-                                       public void onSuccess(String html) {
-                                           FileUtil.write(getApplicationContext(),"3.txt",html);
-                                           new ExamArrangeParser().parse(html);
-                                       }
-                                   });
-                               }
-                           });
-                       }
+            progressBar.setVisibility(View.VISIBLE);
+            kjh = new KJHttp();
+            KJStringParams params = new KJStringParams();
+            params.put("IDToken1", account);
+            params.put("IDToken2", password);
+            kjh.post(URL1, params, new StringCallBack() {
+                @Override
+                public void onSuccess(String json) {
+                    FileUtil.write(getApplicationContext(), "1.txt", json);
+                    kjh.get(URL2, new StringCallBack() {
+                        @Override
+                        public void onSuccess(String json) {
+                            FileUtil.write(getApplicationContext(), "2.txt", json);
+                            KJStringParams params = new KJStringParams();
+                            params.put("xnxqdm", "2013-2014-2");
+                            kjh.post(URL3, params, new StringCallBack() {
+                                @Override
+                                public void onSuccess(String html) {
+                                    FileUtil.write(getApplicationContext(), "3.txt", html);
+                                    List<ExamArrangeInfo> examArrangeInfos = new ExamArrangeParser().parse(html);
+                                    listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos));
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            });
+                        }
+                    });
+                }
 
-                       @Override
-                       public void onFailure(Throwable t, int errorNo, String strMsg) {
-                           super.onFailure(t, errorNo, strMsg);
-
-                       }
-                   });
-               }
+                @Override
+                public void onFailure(Throwable t, int errorNo, String strMsg) {
+                    super.onFailure(t, errorNo, strMsg);
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
+        }
     }
 
     private void initView() {
@@ -107,6 +100,8 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
         if (needLogin()) {
             showLoginDialog();
         }
+
+
     }
 
     // 判断是否需要登录
