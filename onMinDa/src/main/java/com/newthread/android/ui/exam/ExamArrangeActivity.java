@@ -62,39 +62,39 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
         MyPreferenceManager.init(getApplicationContext());
         account = MyPreferenceManager.getString("admin_system_account", "");
         password = MyPreferenceManager.getString("admin_system_password", "");
-        connectPost(URL1);
-//        if (!needLogin()) {
-//            kjh = new KJHttp();
-//            KJStringParams params = new KJStringParams();
-//            params.put("IDToken1", account);
-//            params.put("IDToken2", password);
-//            kjh.post(URL1, params, new StringCallBack() {
-//                @Override
-//                public void onSuccess(String json) {
-//                    Loger.V(json);
-//                    kjh.urlGet(URL2, new StringCallBack() {
-//                        @Override
-//                        public void onSuccess(String json) {
-//
-//                            KJStringParams params = new KJStringParams();
-//                            params.put("xnxqdm", "2013-2014-2");
-//                            kjh.urlPost(URL3, params, new StringCallBack() {
-//                                @Override
-//                                public void onSuccess(String html) {
-//                                    new ExamArrangeParser().parse(html);
-//                                }
-//                            });
-//                        }
-//                    });
-//                }
-//
-//                @Override
-//                public void onFailure(Throwable t, int errorNo, String strMsg) {
-//                    super.onFailure(t, errorNo, strMsg);
-//
-//                }
-//            });
-//        }
+        if (!needLogin()) {
+                   kjh = new KJHttp();
+                   KJStringParams params = new KJStringParams();
+                   params.put("IDToken1", account);
+                   params.put("IDToken2", password);
+                   kjh.post(URL1, params, new StringCallBack() {
+                       @Override
+                       public void onSuccess(String json) {
+                           FileUtil.write(getApplicationContext(),"1.txt",json);
+                           kjh.get(URL2, new StringCallBack() {
+                               @Override
+                               public void onSuccess(String json) {
+                                   FileUtil.write(getApplicationContext(),"2.txt",json);
+                                   KJStringParams params = new KJStringParams();
+                                   params.put("xnxqdm", "2013-2014-2");
+                                   kjh.post(URL3, params, new StringCallBack() {
+                                       @Override
+                                       public void onSuccess(String html) {
+                                           FileUtil.write(getApplicationContext(),"3.txt",html);
+                                           new ExamArrangeParser().parse(html);
+                                       }
+                                   });
+                               }
+                           });
+                       }
+
+                       @Override
+                       public void onFailure(Throwable t, int errorNo, String strMsg) {
+                           super.onFailure(t, errorNo, strMsg);
+
+                       }
+                   });
+               }
     }
 
     private void initView() {
@@ -175,55 +175,5 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-    private boolean connectPost(String url) {
 
-        HttpClient httpClient = new DefaultHttpClient(); // 新建HttpClient对象
-        HttpPost httpPost = new HttpPost(url); // 新建HttpPost对象
-
-        List<NameValuePair> params = new ArrayList<NameValuePair>(); // 使用NameValuePair来保存要传递的Post参数
-        params.add(new BasicNameValuePair("IDToken1", account)); // 添加要传递的参数
-        params.add(new BasicNameValuePair("IDToken2", password));
-
-        httpClient.getParams().setParameter(
-                CoreConnectionPNames.CONNECTION_TIMEOUT, 20 * 1000);
-        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
-                20 * 1000);
-
-        try {
-            HttpEntity entity = new UrlEncodedFormEntity(params, HTTP.UTF_8); // 设置字符集
-            httpPost.setEntity(entity); // 设置参数实体
-            HttpResponse httpResp = httpClient.execute(httpPost); // 获取HttpResponse实例
-            if (httpResp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { // 响应通过
-
-                String result = EntityUtils.toString(httpResp.getEntity(),
-                        "UTF-8");
-                   Loger.V(result);
-
-            } else {
-                // 响应未通过
-                System.out.println(httpResp.getStatusLine().getStatusCode()
-                        + "");
-            }
-        } catch (MalformedURLException e) {
-            Logger.i("MalformedURLException", "MalformedURLException");
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            Logger.i("IllegalArgumentException", "IllegalArgumentException");
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-            Logger.i("ClientProtocolException", "QUERY_ERROR");
-        } catch (SocketTimeoutException e) {
-            e.printStackTrace();
-            Logger.i("SocketTimeoutException", "QUERY_ERROR");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.i("IOException", "QUERY_ERROR");
-
-        } catch (Exception e) {
-            Logger.i("Exception-connectPost", "QUERY_ERROR: " + e.toString());
-            e.printStackTrace();
-        }
-        return false;
-    }
 }
