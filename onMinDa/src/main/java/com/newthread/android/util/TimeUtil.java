@@ -1,5 +1,7 @@
 package com.newthread.android.util;
 
+import com.newthread.android.bean.SingleCourseInfo;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -202,17 +204,18 @@ public class TimeUtil {
     }
 
     //得到课程表可变参数
-    public static String  getChangeCouserUrl(){
+    public static String getChangeCouserUrl() {
         Date now = new Date();
         SimpleDateFormat d1 = new SimpleDateFormat("yyyy-MM-dd");
         String[] strs = d1.format(now).split("-");
         int cYear = Integer.parseInt(strs[0]);
         int cMonth = Integer.parseInt(strs[1]);
-        if(cMonth>7){
-            return  cYear+"-"+(cYear+1)+"-"+1;
+        if (cMonth > 7) {
+            return cYear + "-" + (cYear + 1) + "-" + 1;
         }
-        return  (cYear-1)+"-"+cYear+"-"+2;
+        return (cYear - 1) + "-" + cYear + "-" + 2;
     }
+
     // 得到今天是一年中的第几天
     public static int getDayOfYear(int year, int month, int day) {
         int sum_days = 0;
@@ -269,6 +272,9 @@ public class TimeUtil {
                 / 100 + year / 400) % 7 + 1;
     }
 
+    /**
+     * @return 返回符合clock格式当前时间
+     */
     public static long getClockTestCurrentTime() {
         Date date = new Date();
         // format对象是用来以指定的时间格式格式化时间的
@@ -277,4 +283,74 @@ public class TimeUtil {
         String times = from.format(date);
         return Long.parseLong(times);
     }
+
+    public static String getTimeFromCourse(SingleCourseInfo singleCourseInfo,int beforeMinute) {
+        char firstNum = singleCourseInfo.getNumOfDay().charAt(1);
+        String courseTime = null;
+        switch (firstNum) {
+            case '1':
+                courseTime = "0800";
+                break;
+            case '3':
+                courseTime = "1000";
+                break;
+            case '5':
+                courseTime = "1410";
+                break;
+            case '7':
+                courseTime = "1600";
+                break;
+            case '9':
+                courseTime = "1840";
+                break;
+            default:
+                break;
+        }
+        String dateTime = getDateTimeFromeCouser(singleCourseInfo);
+        String time =dateTime + courseTime;
+        SimpleDateFormat from = new SimpleDateFormat("yyyyMMddHHmm");
+        try {
+            return from.format(getDateBeforeMin(from.parse(time), beforeMinute));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static String getDateTimeFromeCouser(SingleCourseInfo singleCourseInfo) {
+        Calendar cal =Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Date date = cal.getTime();
+        SimpleDateFormat from = new SimpleDateFormat("yyyyMMdd"); // 这里的格式可以自己设置
+        return from.format(getDateAfterDay(date,singleCourseInfo.getNumOfWeek()));
+    }
+    /**
+     * 得到几天后的时间
+     * @param d
+     * @param day
+     * @return
+     */
+    private static Date getDateAfterDay(Date d,int day){
+        Calendar now =Calendar.getInstance();
+        now.setTime(d);
+        now.set(Calendar.DATE,now.get(Calendar.DATE)+day);
+        return now.getTime();
+    }
+    /**
+     * 得到几天后的时间
+     * @param d 日期
+     * @param min 提前的分钟
+     * @return
+     */
+    private static Date getDateBeforeMin(Date d, int min){
+        Calendar now =Calendar.getInstance();
+        now.setTime(d);
+        SimpleDateFormat from = new SimpleDateFormat("yyyyMMddHHmm");
+        Loger.V("原来设定时间："+from.format(now.getTime()));
+        now.set(Calendar.MINUTE,now.get(Calendar.MINUTE)-min);
+        Loger.V("更改后时间："+from.format(now.getTime()));
+        return now.getTime();
+    }
+
+
 }

@@ -16,6 +16,7 @@ import com.newthread.android.activity.main.OnCampusActivity;
 import com.newthread.android.bean.SingleCourseInfo;
 import com.newthread.android.clock.TimeManager;
 import com.newthread.android.clock.TimeTask;
+import com.newthread.android.util.Loger;
 import com.newthread.android.util.TimeUtil;
 
 import java.io.File;
@@ -51,13 +52,15 @@ public class CourseRemindManger implements IRemindService<SingleCourseInfo> {
     public void closeALlRemind() {
 
     }
+
     @Override
     public void openRemind(SingleCourseInfo singleCourseInfo) {
-        String name=singleCourseInfo.getCourseName();
+        String name = singleCourseInfo.getCourseName();
         MyApplication.getInstance().putThing(name, singleCourseInfo);
         Bundle bundle = new Bundle();
-        bundle.putString("name",name);
-        TimeManager.getInstance(context).registClock(new TimeTask(""+(TimeUtil.getClockTestCurrentTime()+1), "couserBroadcast", "broadcast"),bundle);
+        bundle.putString("name", name);
+        String time =TimeUtil.getTimeFromCourse(singleCourseInfo,15);
+        TimeManager.getInstance(context).registClock(new TimeTask(time, "couserBroadcast", "broadcast"), bundle);
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.newthread.android.util;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -55,7 +54,6 @@ public class DatabaseManager<T> {
                 CREATE_TBL = CREATE_TBL + str + " " + getSQLitType(fields.get(i)) + ",";
             }
         }
-        Log.v("000000", "openTable:" + CREATE_TBL);
         db = new DatabaseHelper(context, CREATE_TBL, DB_NAME, 1);
         db.execSQL(CREATE_TBL);
 
@@ -180,7 +178,6 @@ public class DatabaseManager<T> {
             while (c.moveToNext()) {
                 T t = kind.newInstance();
                 int size = fieldsStr.size();
-                Log.v("0000","size"+size);
                 for (int i = 0; i < size; i++) {
                     setMethods.get(i).invoke(t, dataTransfer(fields.get(i), fieldsStr.get(i), c));
                 }
@@ -288,10 +285,6 @@ public class DatabaseManager<T> {
             }
 
         }
-        Log.v("000000", "getMethods:" + fieldsStrT.toString());
-        Log.v("000000", "getMethods:" + this.getMethods.toString());
-        Log.v("000000", "getMethods:" + this.setMethods.toString());
-        Log.v("000000", "getMethods:" + fieldsStr.toString());
     }
 
     public int isExist(String table) {

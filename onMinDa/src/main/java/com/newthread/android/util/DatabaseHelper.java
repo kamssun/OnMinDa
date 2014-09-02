@@ -7,7 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
 
 /**
  * Created by lanqx on 2014/4/16.
@@ -84,7 +84,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private String getTBL_NAME(String CREATE_TBL) {
 		String str = CREATE_TBL;
-		Log.v("000000", "TBL_NAME:" + str.substring(26, str.indexOf("(")));
 		return str.substring(26, str.indexOf("("));
 	}
 }
