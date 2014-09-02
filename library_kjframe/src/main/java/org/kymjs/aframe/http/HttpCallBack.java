@@ -65,8 +65,7 @@ public abstract class HttpCallBack implements I_HttpRespond {
             break;
         case MESSAGE_FAILURE:
             response = (Object[]) msg.obj;
-            handleFailureMessage((Throwable) response[0],
-                    ((Integer) response[0]).intValue(), (String) response[1]);
+            handleFailureMessage((Throwable) response[0],404, (String) response[1]);
             break;
         default:
         }
