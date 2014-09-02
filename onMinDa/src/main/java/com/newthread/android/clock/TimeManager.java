@@ -1,6 +1,7 @@
 package com.newthread.android.clock;
 
 import android.content.Context;
+import android.os.Bundle;
 
 public class TimeManager {
 	private ITimeService timeService;
@@ -55,6 +56,10 @@ public class TimeManager {
 	public void registClock(TimeTask timeTask) {
 		timeService.registClock(timeTask);
 	}
+	public void registClock(TimeTask timeTask,Bundle bundle) {
+		timeService.registClock(timeTask,bundle);
+	}
+
 
 	/**
 	 * 删除小于当前时间的时间任务

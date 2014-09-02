@@ -12,6 +12,8 @@ import android.os.Vibrator;
 import com.newthread.android.R;
 import com.newthread.android.activity.main.OnCampusActivity;
 import com.newthread.android.bean.CurrentBorrowItem;
+import com.newthread.android.clock.TimeManager;
+import com.newthread.android.clock.TimeTask;
 import com.newthread.android.ui.library.LibraryCurrentBorrowActivity;
 
 import java.io.File;
@@ -21,23 +23,22 @@ import java.util.List;
  * Created by Administrator on 2014/8/26.
  */
 public class LibraryBookRemindManger implements IRemindService<CurrentBorrowItem> {
-    private LibraryBookRemindManger() {
+    private Context context;
+
+    private static LibraryBookRemindManger instance;
+
+    private LibraryBookRemindManger(Context context) {
+        this.context = context;
     }
 
-
-    private static class LibraryBookRemindMangerHolder {
-        private static LibraryBookRemindManger instance = new LibraryBookRemindManger();
+    public static LibraryBookRemindManger getInstance(Context context) {
+        synchronized (LibraryBookRemindManger.class) {
+            if (instance == null) {
+                instance = new LibraryBookRemindManger(context);
+            }
+        }
+        return instance;
     }
-
-    public static LibraryBookRemindManger getInstance() {
-        return LibraryBookRemindMangerHolder.instance;
-    }
-
-    @Override
-    public void init() {
-
-    }
-
     @Override
     public void openAllRemind() {
 
@@ -45,6 +46,15 @@ public class LibraryBookRemindManger implements IRemindService<CurrentBorrowItem
 
     @Override
     public void closeALlRemind() {
+
+    }
+
+    @Override
+    public void openRemind(CurrentBorrowItem currentBorrowItem) {
+    }
+
+    @Override
+    public void closeRemind(CurrentBorrowItem currentBorrowItem) {
 
     }
 
@@ -59,7 +69,7 @@ public class LibraryBookRemindManger implements IRemindService<CurrentBorrowItem
     }
 
     @Override
-    public void creatNotiforcation(CurrentBorrowItem currentBorrowItem, Context context) {
+    public void creatNotiforcation(CurrentBorrowItem currentBorrowItem) {
         Notification notification = new Notification();
         notification.icon = R.drawable.notify;
         notification.when = System.currentTimeMillis();
@@ -70,18 +80,19 @@ public class LibraryBookRemindManger implements IRemindService<CurrentBorrowItem
         notification.defaults |= Notification.DEFAULT_LIGHTS;
         Intent intent = new Intent(context.getApplicationContext(), LibraryCurrentBorrowActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context.getApplicationContext(),0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         notification.contentIntent = pendingIntent;
-        notification.setLatestEventInfo(context.getApplicationContext(), "人在民大", currentBorrowItem.getBookName()+"还有3天超期", pendingIntent);
+        notification.setLatestEventInfo(context.getApplicationContext(), "人在民大", currentBorrowItem.getBookName() + "还有3天超期", pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-        vibrate(context);
+        vibrate();
         notificationManager.notify(1, notification);
     }
+
     /**
      * 手机震动
      */
-    private void vibrate(Context context) {
+    private void vibrate() {
         try {
             Vibrator vibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
             vibrator.vibrate(1000);

@@ -7,7 +7,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scrollbarStyle="outsideOverlay" >
+        android:scrollbarStyle="outsideOverlay" android:fillViewport="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,7 +110,6 @@
                     </EditText>
 
                     <TextView
-                        android:id="@+id/textview_duration_weeks_2"
                         style="@style/form_content2"
                         android:layout_toRightOf="@id/edit_course_detial_time_end"
                         android:text="节" />
@@ -149,7 +148,6 @@
                     </EditText>
 
                     <TextView
-                        android:id="@+id/textview_duration_weeks_2"
                         style="@style/form_content2"
                         android:layout_alignBottom="@+id/edit_duration_weeks_start_end"
                         android:layout_toRightOf="@+id/edit_duration_weeks_start_end"

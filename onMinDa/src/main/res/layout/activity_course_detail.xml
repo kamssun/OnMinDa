@@ -1,89 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#eee" >
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#eee">
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scrollbarStyle="outsideOverlay" >
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbarStyle="outsideOverlay" android:fillViewport="false">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-                <RelativeLayout style="@style/attr_list_item_top" >
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <RelativeLayout style="@style/attr_list_item_top">
 
                     <TextView
-                        style="@style/form_title"
-                        android:text="课程名称" />
+                            style="@style/form_title"
+                            android:text="课程名称"/>
 
                     <TextView
-                        android:id="@+id/course_name"
-                        style="@style/form_content"
-                        android:layout_marginLeft="70dp" />
+                            android:id="@+id/course_name"
+                            style="@style/form_content"
+                            android:layout_marginLeft="70dp"/>
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/attr_list_item_last" >
+                <RelativeLayout style="@style/attr_list_item_last">
 
                     <TextView
-                        style="@style/form_title"
-                        android:text="代课老师" />
+                            style="@style/form_title"
+                            android:text="代课老师"/>
 
                     <TextView
-                        android:id="@+id/teacher"
-                        style="@style/form_content" />
+                            android:id="@+id/teacher"
+                            style="@style/form_content"/>
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <RelativeLayout style="@style/attr_list_item_top" >
-
-                    <TextView
-                        style="@style/form_title"
-                        android:text="上课地点" />
+                <RelativeLayout style="@style/attr_list_item_top">
 
                     <TextView
-                        android:id="@+id/place"
-                        style="@style/form_content" />
+                            style="@style/form_title"
+                            android:text="上课地点"/>
+
+                    <TextView
+                            android:id="@+id/place"
+                            style="@style/form_content"/>
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/attr_list_item" >
+                <RelativeLayout style="@style/attr_list_item">
 
                     <TextView
-                        style="@style/form_title"
-                        android:text="上课时间" />
+                            style="@style/form_title"
+                            android:text="上课时间"/>
 
                     <TextView
-                        android:id="@+id/course_time"
-                        style="@style/form_content" />
+                            android:id="@+id/course_time"
+                            style="@style/form_content"/>
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/attr_list_item_last" >
+                <RelativeLayout style="@style/attr_list_item_last">
 
                     <TextView
-                        style="@style/form_title"
-                        android:text="上课周数" />
+                            style="@style/form_title"
+                            android:text="上课周数"/>
 
                     <TextView
-                        android:id="@+id/duration_weeks"
-                        style="@style/form_content" />
+                            android:id="@+id/duration_weeks"
+                            style="@style/form_content"/>
                 </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    >
+                <Button
+                        android:id="@+id/remindbutton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/red"
+                        android:text="提醒本节课"
+                        />
+
             </LinearLayout>
 
         </LinearLayout>
+
+
     </ScrollView>
 
 </RelativeLayout>

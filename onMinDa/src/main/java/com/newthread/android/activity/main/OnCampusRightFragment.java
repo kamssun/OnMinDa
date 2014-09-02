@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import com.newthread.android.R;
+import com.newthread.android.ui.exam.ExamArrangeActivity;
+import com.newthread.android.ui.grade.GradeSelect;
+import com.newthread.android.ui.labquery.LabLogin_activity;
 import com.newthread.android.ui.library.LibraryCollectActivity;
 import com.newthread.android.ui.library.LibraryCurrentBorrowActivity;
 import android.annotation.SuppressLint;
@@ -57,10 +60,24 @@ public class OnCampusRightFragment extends ListFragment {
 //		map2.put("icon", R.drawable.ic_on_campus_right_setting);
 		data.add(map2);
 
-		HashMap<String, Object> map3 = new HashMap<String, Object>();
-		map3.put("title", "设置");
-//		map3.put("icon", R.drawable.ic_on_campus_right_setting);
-		data.add(map3);
+        HashMap<String, Object> map3 = new HashMap<String, Object>();
+        map3.put("title", "成绩查询");
+        // map5.put("icon", R.drawable.ic_on_campus_right_setting);
+        data.add(map3);
+
+        HashMap<String, Object> map4 = new HashMap<String, Object>();
+        map4.put("title", "实验查询");
+        // map5.put("icon", R.drawable.ic_on_campus_right_setting);
+        data.add(map4);
+        HashMap<String, Object> map5 = new HashMap<String, Object>();
+        map5.put("title", "考试安排");
+        // map5.put("icon", R.drawable.ic_on_campus_right_setting);
+        data.add(map5);
+
+		HashMap<String, Object> map6 = new HashMap<String, Object>();
+		map6.put("title", "设置");
+//		map6.put("icon", R.drawable.ic_on_campus_right_setting);
+		data.add(map6);
 		
 		SimpleAdapter adapter = new SimpleAdapter(
 				con,
@@ -91,7 +108,19 @@ public class OnCampusRightFragment extends ListFragment {
 			// 当前借阅
 			Intent _intent = new Intent(con, LibraryCurrentBorrowActivity.class);
 			startActivity(_intent);
-		} else if (3 == position) {
+		}else if (3 == position) {
+            // 成绩查询
+            Intent _intent = new Intent(con, GradeSelect.class);
+            startActivity(_intent);
+        } else if (4 == position) {
+            // 实验查询
+            Intent _intent = new Intent(con, LabLogin_activity.class);
+            startActivity(_intent);
+        }else if (5 == position) {
+            //
+            Intent _intent = new Intent(con, ExamArrangeActivity.class);
+            startActivity(_intent);
+        }else if (6 == position) {
 			// 设置
 			Intent _intent = new Intent(con, SettingActivity.class);
 			startActivity(_intent);

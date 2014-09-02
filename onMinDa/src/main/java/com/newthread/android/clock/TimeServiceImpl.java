@@ -10,6 +10,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 import com.newthread.android.util.DatabaseManager;
@@ -162,33 +163,45 @@ public class TimeServiceImpl implements ITimeService {
      * @return 创建一个时间任务的pendingIntent
      */
     private PendingIntent createRigistPIntent(TimeTask timeTask, int i) {
+        return createRigistPIntent(timeTask,i,null);
+    }
+    private PendingIntent createRigistPIntent(TimeTask timeTask, int i, Bundle bundle) {
         timeTask.setRequestCode(i + "");
         Intent _intent;
         if (timeTask.getType().equals("activity")) {
             _intent = new Intent(context, TimeTaskMeta.valueOf(timeTask.getTaskName()).getStartClass());
+            _intent.putExtras(bundle);
             _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent pi = PendingIntent.getActivity(context, i, _intent, 0);
             return pi;
         } else if (timeTask.getType().equals("broadcast")) {
             _intent = new Intent(TimeTaskMeta.valueOf(timeTask.getTaskName()).getAction());
+            _intent.putExtras(bundle);
             PendingIntent pi = PendingIntent.getBroadcast(context, i, _intent, 0);
             return pi;
         } else if (timeTask.getType().equals("service")) {
             _intent = new Intent(context, TimeTaskMeta.valueOf(timeTask.getTaskName()).getStartClass());
             _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            _intent.putExtras(bundle);
             PendingIntent pi = PendingIntent.getService(context, i, _intent, 0);
             return pi;
         }
         return null;
     }
 
+
     /**
      * 注册时间任务
      */
     @Override
     public void registClock(TimeTask timeTask) {
+        registClock(timeTask,null);
+    }
+
+    @Override
+    public void registClock(TimeTask timeTask, Bundle bundle) {
         List<TimeTask> timeTasks = dbManger.query();
-        PendingIntent pi = createRigistPIntent(timeTask, timeTasks.size());
+        PendingIntent pi = createRigistPIntent(timeTask, timeTasks.size(),bundle);
         if (timeTask.getRepetTimeMills() == null) {
             alarmMgr.set(AlarmManager.RTC, Long.valueOf(getMills(timeTask)), pi);
         } else {
@@ -196,6 +209,7 @@ public class TimeServiceImpl implements ITimeService {
         }
         addTimeTaskInDB(timeTask);
     }
+
 
 
     /**

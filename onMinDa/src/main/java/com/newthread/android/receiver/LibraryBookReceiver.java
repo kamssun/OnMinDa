@@ -16,7 +16,7 @@ public class LibraryBookReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("com.newthread.android.action.LibraryBookRunOut")) {
             CurrentBorrowItem currentBorrowItem = new CurrentBorrowItem();
             currentBorrowItem.setBookName("金品梅");
-            LibraryBookRemindManger.getInstance().creatNotiforcation(currentBorrowItem,context);
+            LibraryBookRemindManger.getInstance(context).creatNotiforcation(currentBorrowItem);
         }
     }
 }

@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -72,8 +73,8 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
                                 @Override
                                 public void onSuccess(String html) {
                                     FileUtil.write(getApplicationContext(), "3.txt", html);
-                                    List<ExamArrangeInfo> examArrangeInfos = new ExamArrangeParser().parse(html);
-                                    listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos));
+//                                    List<ExamArrangeInfo> examArrangeInfos = new ExamArrangeParser().parse(html);
+//                                    listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos));
                                     progressBar.setVisibility(View.GONE);
                                 }
                             });
@@ -82,9 +83,9 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
                 }
 
                 @Override
-                public void onFailure(Throwable t, int errorNo, String strMsg) {
-                    super.onFailure(t, errorNo, strMsg);
+                public void onFailure(Throwable t, int errorNo, String strMsg) {super.onFailure(t, errorNo, strMsg);
                     progressBar.setVisibility(View.GONE);
+                    Toast.makeText(getApplicationContext(),"网络异常",Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -1,5 +1,7 @@
 package com.newthread.android.clock;
 
+import android.os.Bundle;
+
 public interface ITimeService {
 	/**
 	 * 从数据库依次取消所有已注册过的时间
@@ -20,6 +22,13 @@ public interface ITimeService {
 	 * 注册时间任务
 	 */
 	void registClock(TimeTask timeTask);
+
+    /**
+     * 注册时间任务
+     * @param timeTask
+     * @param bundle 得到的intent将带有budle信息
+     */
+    void registClock(TimeTask timeTask,Bundle bundle);
 
 	/**
 	 * 将时间任务写入数据库，注意并没有注册，到时间了不会启动

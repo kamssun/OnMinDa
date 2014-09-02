@@ -167,7 +167,7 @@ public class TimeUtil {
         SimpleDateFormat d1 = new SimpleDateFormat("yyyy-MM-dd");
         String[] strs = d1.format(now).split("-");
         // 初始化开学时间
-        int sYear = 2013;
+        int sYear = 2014;
         int sMonth = 9;
         int sDay = 2;
 
@@ -256,6 +256,7 @@ public class TimeUtil {
 
     // 得到今天是周几
     public static int getDayOfWeek(int year, int month, int day) {
+
         if (month == 1) {
             month = 13;
             year--;
@@ -266,5 +267,14 @@ public class TimeUtil {
         }
         return (day + 2 * month + 3 * (month + 1) / 5 + year + year / 4 - year
                 / 100 + year / 400) % 7 + 1;
+    }
+
+    public static long getClockTestCurrentTime() {
+        Date date = new Date();
+        // format对象是用来以指定的时间格式格式化时间的
+        SimpleDateFormat from = new SimpleDateFormat("yyyyMMddHHmm"); // 这里的格式可以自己设置
+        // format()方法是用来格式化时间的方法
+        String times = from.format(date);
+        return Long.parseLong(times);
     }
 }

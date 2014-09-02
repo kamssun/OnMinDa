@@ -14,12 +14,14 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
 import com.newthread.android.bean.SingleCourseInfo;
+import com.newthread.android.manager.CourseRemindManger;
 import com.newthread.android.ui.library.LibraryLoginActivity;
 import com.newthread.android.util.StringUtils;
 
 public class CourseDetailActivity extends SherlockFragmentActivity {
 	private TextView courseName, teacher, place, time, duration;
 	private SingleCourseInfo info;
+    private Button remindButton;
 	private int position;
 	private int day;
 	@Override
@@ -55,7 +57,16 @@ public class CourseDetailActivity extends SherlockFragmentActivity {
 		place = (TextView) this.findViewById(R.id.place);
 		time = (TextView) this.findViewById(R.id.course_time);
 		duration = (TextView) this.findViewById(R.id.duration_weeks);
-
+        remindButton=(Button)this.findViewById(R.id.remindbutton);
+        remindButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CourseRemindManger.getInstance(getApplicationContext()).openRemind(info);
+            }
+        });
+        if(info==null){
+            remindButton.setVisibility(View.GONE);
+        }
 		if (!StringUtils.isEmpty(info.getCourseName())) {
 			courseName.setText(info.getCourseName());
 			teacher.setText(info.getTeacherName());
