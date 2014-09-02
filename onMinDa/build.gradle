@@ -15,7 +15,6 @@ def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/
 repositories {
     maven { url localMavenRepo }
     mavenCentral()
-    maven { url 'http://repo.spring.io/libs-release' }
 }
 
 android {
