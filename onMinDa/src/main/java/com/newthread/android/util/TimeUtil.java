@@ -346,9 +346,7 @@ public class TimeUtil {
         Calendar now =Calendar.getInstance();
         now.setTime(d);
         SimpleDateFormat from = new SimpleDateFormat("yyyyMMddHHmm");
-        Loger.V("原来设定时间："+from.format(now.getTime()));
         now.set(Calendar.MINUTE,now.get(Calendar.MINUTE)-min);
-        Loger.V("更改后时间："+from.format(now.getTime()));
         return now.getTime();
     }
 
