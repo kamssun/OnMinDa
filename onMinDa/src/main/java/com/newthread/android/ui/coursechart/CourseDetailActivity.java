@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -14,7 +15,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
 import com.newthread.android.bean.SingleCourseInfo;
 import com.newthread.android.manager.CourseRemindManger;
-import com.newthread.android.util.Loger;
 import com.newthread.android.util.StringUtils;
 
 public class CourseDetailActivity extends SherlockFragmentActivity {
@@ -62,6 +62,7 @@ public class CourseDetailActivity extends SherlockFragmentActivity {
             @Override
             public void onClick(View v) {
                 CourseRemindManger.getInstance(getApplicationContext()).openRemind(info);
+                Toast.makeText(getApplicationContext(),"增加提醒成功",Toast.LENGTH_SHORT).show();
             }
         });
         if (info.getCourseName()==null||info.getCourseName().length()==0) {
