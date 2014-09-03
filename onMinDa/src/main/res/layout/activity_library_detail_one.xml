@@ -124,15 +124,6 @@
             style="@style/ListView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
-
-        <LinearLayout
-			android:layout_alignParentBottom="true"
-            android:id="@+id/adLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal" >
-        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>
