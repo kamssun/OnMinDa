@@ -18,6 +18,7 @@ import com.newthread.android.adapter.ExamListViewAdpeter;
 import com.newthread.android.bean.ExamArrangeInfo;
 import com.newthread.android.ui.coursechart.CourseChartLoginActivity;
 import com.newthread.android.util.*;
+import org.kymjs.aframe.database.KJDB;
 import org.kymjs.aframe.http.KJHttp;
 import org.kymjs.aframe.http.KJStringParams;
 import org.kymjs.aframe.http.StringCallBack;
@@ -34,6 +35,7 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
 
 
     private KJHttp kjh;
+    private KJDB db;
     private ListView listView;
     private ProgressBar progressBar;
     private String account, password;
@@ -42,53 +44,64 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grade_list);
-        listView = (ListView) findViewById(R.id.listView);
-        progressBar = (ProgressBar) this.findViewById(R.id.library_list_loading);
-        initData();
-        initView();
-    }
-
-    private void initData() {
+        db = KJDB.create(getApplicationContext(), "examArrange");
         MyPreferenceManager.init(getApplicationContext());
         account = MyPreferenceManager.getString("admin_system_account", "");
         password = MyPreferenceManager.getString("admin_system_password", "");
-        if (!needLogin()) {
-            progressBar.setVisibility(View.VISIBLE);
-            kjh = new KJHttp();
-            KJStringParams params = new KJStringParams();
-            params.put("IDToken1", account);
-            params.put("IDToken2", password);
-            kjh.post(URL1, params, new StringCallBack() {
-                @Override
-                public void onSuccess(String json) {
-                    FileUtil.write(getApplicationContext(), "1.txt", json);
-                    kjh.get(URL2, new StringCallBack() {
-                        @Override
-                        public void onSuccess(String json) {
-                            FileUtil.write(getApplicationContext(), "2.txt", json);
-                            KJStringParams params = new KJStringParams();
-                            params.put("xnxqdm", "2013-2014-2");
-                            kjh.post(URL3, params, new StringCallBack() {
-                                @Override
-                                public void onSuccess(String html) {
-                                    FileUtil.write(getApplicationContext(), "3.txt", html);
-//                                    List<ExamArrangeInfo> examArrangeInfos = new ExamArrangeParser().parse(html);
-//                                    listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos));
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                            });
-                        }
-                    });
-                }
+        setContentView(R.layout.activity_grade_list);
+        listView = (ListView) findViewById(R.id.listView);
+        progressBar = (ProgressBar) this.findViewById(R.id.library_list_loading);
+        initView();
+        initData();
+    }
 
-                @Override
-                public void onFailure(Throwable t, int errorNo, String strMsg) {super.onFailure(t, errorNo, strMsg);
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(),"网络异常",Toast.LENGTH_SHORT).show();
-                }
-            });
+    private void initData() {
+        List<ExamArrangeInfo> examArrangeInfos = db.findAll(ExamArrangeInfo.class);
+        if (!needLogin()) {
+            if (examArrangeInfos == null || examArrangeInfos.size() == 0) {
+                getExamFromUrl();
+            } else {
+                listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos, getApplication()));
+            }
         }
+    }
+
+    private void getExamFromUrl() {
+        progressBar.setVisibility(View.VISIBLE);
+        kjh = new KJHttp();
+        KJStringParams params = new KJStringParams();
+        params.put("IDToken1", account);
+        params.put("IDToken2", password);
+        kjh.post(URL1, params, new StringCallBack() {
+            @Override
+            public void onSuccess(String json) {
+                kjh.get(URL2, new StringCallBack() {
+                    @Override
+                    public void onSuccess(String json) {
+                        KJStringParams params = new KJStringParams();
+                        params.put("xnxqdm", "2013-2014-2");
+                        kjh.post(URL3, params, new StringCallBack() {
+                            @Override
+                            public void onSuccess(String html) {
+                                progressBar.setVisibility(View.GONE);
+                                List<ExamArrangeInfo> examArrangeInfos = new ExamArrangeParser().parse(html);
+                                listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos, getApplication()));
+                                //保存到数据库
+                                for (ExamArrangeInfo examArrangeInfo : examArrangeInfos) {
+                                    db.save(examArrangeInfo);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                Toast.makeText(getApplicationContext(), "网络异常", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initView() {
@@ -107,9 +120,7 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
 
     // 判断是否需要登录
     private boolean needLogin() {
-        if (StringUtils.isEmpty(account)
-                | StringUtils.isEmpty(password)
-                | MyPreferenceManager.getBoolean("admin_system_isFirstLogin", true)) {
+        if (StringUtils.isEmpty(account) | StringUtils.isEmpty(password) | MyPreferenceManager.getBoolean("admin_system_isFirstLogin", true)) {
             return true;
         }
         return false;

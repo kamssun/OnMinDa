@@ -1,9 +1,13 @@
 package com.newthread.android.bean;
 
+import org.kymjs.aframe.database.annotate.Id;
+
 /**
  * Created by jindongping on 14-9-1.
  */
-public class ExamArrangeInfo {
+public class ExamArrangeInfo{
+    @Id
+    private int id ;
     private String state;//考试编排状态
     private String courseId;//课程id
     private String courseName;//课程名
@@ -16,6 +20,14 @@ public class ExamArrangeInfo {
     private String examModle;//考试方式
     private String finishSate;//考试是否结束
     private String seatNum;//座位号
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getExamModle() {
         return examModle;
