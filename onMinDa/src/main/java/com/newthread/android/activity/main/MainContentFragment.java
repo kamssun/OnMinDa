@@ -93,8 +93,7 @@ public class MainContentFragment extends Fragment {
     }
 
     private void initData() {
-        if(con!=null)
-        weekCourse = AndroidDB.getCourse(con);
+        weekCourse = AndroidDB.getCourse(getActivity().getApplicationContext());
     }
 
     private int changephoto = 1;
