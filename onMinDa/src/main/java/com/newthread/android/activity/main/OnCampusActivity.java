@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.view.KeyEvent;
+import com.newthread.android.util.Loger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -116,9 +117,8 @@ public class OnCampusActivity extends SlidingFragmentActivity {
             public void onOpen() {
                 if (isFirstSlideMenu) {
                     leftFragment.refreshLogo();
-                    return ;
+                    isFirstSlideMenu = false;
                 }
-                isFirstSlideMenu = false;
             }
         });
 	}
