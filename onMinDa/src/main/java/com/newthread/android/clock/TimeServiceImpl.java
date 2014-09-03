@@ -162,9 +162,6 @@ public class TimeServiceImpl implements ITimeService {
      * @param i
      * @return 创建一个时间任务的pendingIntent
      */
-    private PendingIntent createRigistPIntent(TimeTask timeTask, int i) {
-        return createRigistPIntent(timeTask,i,null);
-    }
     private PendingIntent createRigistPIntent(TimeTask timeTask, int i, Bundle bundle) {
         timeTask.setRequestCode(i + "");
         Intent _intent;
@@ -203,9 +200,9 @@ public class TimeServiceImpl implements ITimeService {
         List<TimeTask> timeTasks = dbManger.query();
         PendingIntent pi = createRigistPIntent(timeTask, timeTasks.size(),bundle);
         if (timeTask.getRepetTimeMills() == null) {
-            alarmMgr.set(AlarmManager.RTC, Long.valueOf(getMills(timeTask)), pi);
+            alarmMgr.set(AlarmManager.RTC_WAKEUP, Long.valueOf(getMills(timeTask)), pi);
         } else {
-            alarmMgr.setRepeating(AlarmManager.RTC, Long.valueOf(getMills(timeTask)), Long.valueOf(timeTask.getRepetTimeMills()), pi);
+            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, Long.valueOf(getMills(timeTask)), Long.valueOf(timeTask.getRepetTimeMills()), pi);
         }
         addTimeTaskInDB(timeTask);
     }
