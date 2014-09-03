@@ -93,6 +93,7 @@ public class MainContentFragment extends Fragment {
     }
 
     private void initData() {
+        if(con!=null)
         weekCourse = AndroidDB.getCourse(con);
     }
 
