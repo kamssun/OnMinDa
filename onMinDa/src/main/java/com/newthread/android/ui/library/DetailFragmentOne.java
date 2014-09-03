@@ -5,27 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.youmi.android.banner.AdSize;
-import net.youmi.android.banner.AdView;
-import net.youmi.android.banner.AdViewLinstener;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.newthread.android.R;
 import com.newthread.android.bean.LibraryDetailBookInfo;
-import com.newthread.android.util.Logger;
 
 public class DetailFragmentOne extends Fragment {
 	private TextView library_detail_title;
@@ -75,32 +66,7 @@ public class DetailFragmentOne extends Fragment {
 										new int []{R.id.detail_id, R.id.detail_location, R.id.detail_status});
 			library_detail_listview.setAdapter(adapter);
 		}
-		
-		// 广告条接口调用        
-        // 将广告条adView添加到需要展示的layout控件中
-        LinearLayout adLayout = (LinearLayout) view.findViewById(R.id.adLayout);
-        AdView adView = new AdView(con, AdSize.FIT_SCREEN);
-        adLayout.addView(adView);
 
-        // 监听广告条接口
-        adView.setAdListener(new AdViewLinstener() {
-            
-            @Override
-            public void onSwitchedAd(AdView arg0) {
-                Log.i("YoumiSample", "广告条切换");
-            }
-            
-            @Override
-            public void onReceivedAd(AdView arg0) {
-                Log.i("YoumiSample", "请求广告成功");
-            }
-            
-            @Override
-            public void onFailedToReceivedAd(AdView arg0) {
-                Log.i("YoumiSample", "请求广告失败");
-            }
-        });
-		
 		return view;
 	}
 	
