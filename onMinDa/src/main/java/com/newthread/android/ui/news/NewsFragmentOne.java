@@ -48,7 +48,11 @@ public class NewsFragmentOne extends Fragment {
 	private static String label = null;	// 加载时间
 	private int visibleLastIndex = 0;	// 最后的可视项索引
 	public static final int PER_PAGE_NUM = 12;	// 每页item数量
-	
+
+    public PullToRefreshListView getListView(){
+            return listView ;
+    }
+
 	public NewsFragmentOne() {
 	}
 	
@@ -149,7 +153,7 @@ public class NewsFragmentOne extends Fragment {
 				visibleLastIndex = firstVisibleItem + visibleItemCount - 2;
 			}
 		});
-			
+
 		return view;
 	}
 	

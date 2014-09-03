@@ -45,7 +45,10 @@ public class NewsFragmentTwo extends Fragment {
 	private boolean isRefreshSuccess = false;  // 本次刷新是否成功
 	private int visibleLastIndex = 0;	// 最后的可视项索引
 	public static final int PER_PAGE_NUM = 12;	// 每页item数量
-	
+
+    public PullToRefreshListView getListView(){
+        return listView ;
+    }
 	public NewsFragmentTwo() {
 	}
 	

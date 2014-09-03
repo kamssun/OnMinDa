@@ -17,6 +17,9 @@ public class NewsFragmentAdapter extends FragmentPagerAdapter  {
     private ArrayList<NewsListItem> listOne;
     private ArrayList<NewsListItem> listTwo;
     private ArrayList<NewsListItem> listThree;
+    private NewsFragmentOne newsFragmentOne;
+    private NewsFragmentTwo newsFragmentTwo;
+    private NewsFragmentThree newsFragmentThree;
     private Context con;
     
 	public NewsFragmentAdapter(FragmentManager fm, ArrayList<NewsListItem> listOne, ArrayList<NewsListItem> listTwo,
@@ -27,14 +30,29 @@ public class NewsFragmentAdapter extends FragmentPagerAdapter  {
 		this.listThree = listThree;
 		this.con = con;
 	}
-	
-	public Fragment getItem(int position) {
+
+    public NewsFragmentTwo getNewsFragmentTwo() {
+        return newsFragmentTwo;
+    }
+
+    public NewsFragmentOne getNewsFragmentOne() {
+        return newsFragmentOne;
+    }
+
+    public NewsFragmentThree getNewsFragmentThree() {
+        return newsFragmentThree;
+    }
+
+    public Fragment getItem(int position) {
 		if (0 == position) {
-			 return new NewsFragmentOne(con, listOne);
+            newsFragmentOne =new NewsFragmentOne(con, listOne);
+			 return newsFragmentOne;
     	} else if (1 == position) {
-    		 return new NewsFragmentTwo(con, listTwo);
+            newsFragmentTwo=new NewsFragmentTwo(con, listTwo);
+    		 return newsFragmentTwo;
     	} else if (2 == position) {
-    		 return new NewsFragmentThree(con, listThree);
+            newsFragmentThree =new NewsFragmentThree(con, listThree);
+    		 return newsFragmentThree;
     	}
 		return new NewsFragmentOne(con, listOne);
     }
