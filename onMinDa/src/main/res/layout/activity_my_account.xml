@@ -15,6 +15,7 @@
 
         <TextView
             android:id="@+id/library_account"
+            android:layout_marginRight="20dp"
             style="@style/form_content" />
 
         <ImageView
@@ -33,6 +34,7 @@
 
         <TextView
             android:id="@+id/admin_system_account"
+            android:layout_marginRight="20dp"
             style="@style/form_content" />
 
         <ImageView
