@@ -128,19 +128,6 @@
         <activity
                 android:name=".ui.exam.ExamArrangeActivity"
                 android:screenOrientation="portrait" />
-        <!-- 有米传媒 Android SDK 配置(可直接复制节点) -->
-        <!-- SDK 必须配置 -->
-        <activity
-            android:name="net.youmi.android.AdBrowser"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
-
-        <service
-            android:name="net.youmi.android.AdService"
-            android:exported="false" >
-        </service>
-
         <receiver android:name="com.newthread.android.receiver.CouserReceiver" >
             <intent-filter>
                 <action android:name="com.newthread.android.action.CourserRemind" />
@@ -151,16 +138,6 @@
                 <action android:name="com.newthread.android.action.LibraryBookRunOut" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name="net.youmi.android.AdReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-
         <service
             android:name="com.newthread.android.manager.MyIntentService"
             android:exported="false" >
