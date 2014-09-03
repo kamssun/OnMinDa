@@ -1,13 +1,10 @@
 package com.newthread.android.ui.library;
 
-import net.youmi.android.AdManager;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -17,7 +14,6 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.widget.ShareActionProvider;
 import com.newthread.android.R;
 import com.newthread.android.bean.BookCollectItem;
 import com.newthread.android.bean.LibraryDetailBookInfo;
@@ -52,11 +48,6 @@ public class LibraryDetailActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_library_detail_main);
-
-		// 初始化应用的发布ID和密钥，以及设置测试模式
-		AdManager.getInstance(this).init("07b8c2d4858f4168",
-				"d30c220a342bec4f", false);
-
 		initView();
 		queryPerform();
 	}
