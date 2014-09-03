@@ -121,6 +121,7 @@ public class GradeSelect extends SherlockFragmentActivity implements OnClickList
 		
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage("正在查询。。。");
+        progressDialog.setCancelable(false);
 		progressDialog.show();
 		
 		new Thread(new Runnable() {
