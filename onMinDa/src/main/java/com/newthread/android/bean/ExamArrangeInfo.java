@@ -8,18 +8,18 @@ import org.kymjs.aframe.database.annotate.Id;
 public class ExamArrangeInfo{
     @Id
     private int id ;
-    private String state;//考试编排状态
-    private String courseId;//课程id
-    private String courseName;//课程名
-    private String courseGrade;//学分
-    private String courseTeacher;//课程老师
-    private String courseType;//课程性质
-    private String examAddress;//考试地址
-    private String examTime;//考试时间
-    private String examType;//考试类型
-    private String examModle;//考试方式
-    private String finishSate;//考试是否结束
-    private String seatNum;//座位号
+    private String state="";//考试编排状态
+    private String courseId="";//课程id
+    private String courseName="";//课程名
+    private String courseGrade="";//学分
+    private String courseTeacher="";//课程老师
+    private String courseType="";//课程性质
+    private String examAddress="";//考试地址
+    private String examTime="";//考试时间
+    private String examType="";//考试类型
+    private String examModle="";//考试方式
+    private String finishSate="";//考试是否结束
+    private String seatNum="";//座位号
 
     public int getId() {
         return id;

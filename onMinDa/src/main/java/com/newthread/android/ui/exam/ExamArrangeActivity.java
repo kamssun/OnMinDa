@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
+import com.newthread.android.activity.main.MyApplication;
 import com.newthread.android.adapter.ExamListViewAdpeter;
 import com.newthread.android.bean.ExamArrangeInfo;
 import com.newthread.android.ui.coursechart.CourseChartLoginActivity;
@@ -61,7 +63,7 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
             if (examArrangeInfos == null || examArrangeInfos.size() == 0) {
                 getExamFromUrl();
             } else {
-                listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos, getApplication()));
+                setListView(examArrangeInfos);
             }
         }
     }
@@ -84,8 +86,8 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
                             @Override
                             public void onSuccess(String html) {
                                 progressBar.setVisibility(View.GONE);
-                                List<ExamArrangeInfo> examArrangeInfos = new ExamArrangeParser().parse(html);
-                                listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos, getApplication()));
+                                final List<ExamArrangeInfo> examArrangeInfos = new ExamArrangeParser().parse(html);
+                                setListView(examArrangeInfos);
                                 //保存到数据库
                                 for (ExamArrangeInfo examArrangeInfo : examArrangeInfos) {
                                     db.save(examArrangeInfo);
@@ -100,6 +102,18 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
             public void onFailure(Throwable t, int errorNo, String strMsg) {
                 super.onFailure(t, errorNo, strMsg);
                 Toast.makeText(getApplicationContext(), "网络异常", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setListView(final List<ExamArrangeInfo> examArrangeInfos) {
+        listView.setAdapter(new ExamListViewAdpeter(examArrangeInfos, getApplication()));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MyApplication.getInstance().putThing("examArrangeInfo",examArrangeInfos.get(position));
+                Intent intent = new Intent(getApplicationContext(),ExamArrangeDetailActivity.class);
+                startActivity(intent);
             }
         });
     }
