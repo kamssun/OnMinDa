@@ -62,7 +62,7 @@ public class MainContentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_content, container, false);
-
+        this.con=getActivity().getApplicationContext();
         initData();
         initView(view);
         return view;
@@ -71,6 +71,7 @@ public class MainContentFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        this.con = getActivity().getApplicationContext();
         todayShowList.clear();
         tomorrowShowList.clear();
         weekCourse = AndroidDB.getCourse(con);
