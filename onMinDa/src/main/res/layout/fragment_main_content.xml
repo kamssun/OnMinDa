@@ -19,7 +19,7 @@
                     android:id="@+id/main_content_bg"
                     android:layout_width="fill_parent"
                     android:layout_height="200dp"
-                    android:src="@drawable/main_titlebar_bg_5"/>
+                    />
 
             <LinearLayout
                     android:layout_width="match_parent"
