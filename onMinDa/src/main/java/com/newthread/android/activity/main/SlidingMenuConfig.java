@@ -18,8 +18,8 @@ import java.util.List;
 public class SlidingMenuConfig {
 
     private static SlidingMenuConfig instance = new SlidingMenuConfig();
-    private List< ItemMenu> leftList;
-    private List< ItemMenu> rightList;
+    private List<ItemMenu> leftList;
+    private List<ItemMenu> rightList;
 
     private SlidingMenuConfig() {
         leftList = new ArrayList<>();
@@ -28,22 +28,22 @@ public class SlidingMenuConfig {
         setRightListView(rightList);
     }
 
-    private void setRightListView(List< ItemMenu>rightList) {
-        rightList.add(new ItemMenu("我的账号",MyAccountActivity.class));
-        rightList.add(new ItemMenu("图书收藏",LibraryCollectActivity.class));
-        rightList.add(new ItemMenu("当前借阅",LibraryCurrentBorrowActivity.class));
-        rightList.add(new ItemMenu("成绩查询",GradeSelect.class));
-        rightList.add(new ItemMenu("实验查询",LabLogin_activity.class));
-        rightList.add(new ItemMenu("考试安排",ExamArrangeActivity.class));
-        rightList.add(new ItemMenu("设置",SettingActivity.class));
+    private void setRightListView(List<ItemMenu> rightList) {
+        rightList.add(new ItemMenu("我的账号", MyAccountActivity.class));
+        rightList.add(new ItemMenu("图书收藏", LibraryCollectActivity.class));
+        rightList.add(new ItemMenu("当前借阅", LibraryCurrentBorrowActivity.class));
+        rightList.add(new ItemMenu("设置", SettingActivity.class));
     }
 
 
-    private void setLeftListView(List< ItemMenu> leftList) {
-     leftList.add(new ItemMenu("图书馆",LibraryActivity.class));
-     leftList.add(new ItemMenu("课程表",CourseChartLoginActivity.class));
-     leftList.add(new ItemMenu("校园新闻", NewsActivity.class));
-     leftList.add(new ItemMenu("校园网连接",SchoolNetActivity.class));
+    private void setLeftListView(List<ItemMenu> leftList) {
+        leftList.add(new ItemMenu("图书馆", LibraryActivity.class));
+        leftList.add(new ItemMenu("课程表", CourseChartLoginActivity.class));
+        leftList.add(new ItemMenu("校园新闻", NewsActivity.class));
+        leftList.add(new ItemMenu("校园网连接", SchoolNetActivity.class));
+        leftList.add(new ItemMenu("成绩查询", GradeSelect.class));
+        leftList.add(new ItemMenu("实验查询", LabLogin_activity.class));
+        leftList.add(new ItemMenu("考试安排", ExamArrangeActivity.class));
     }
 
 
@@ -51,15 +51,13 @@ public class SlidingMenuConfig {
         return instance;
     }
 
-    public List< ItemMenu> getLeftList() {
+    public List<ItemMenu> getLeftList() {
         return leftList;
     }
 
-    public List< ItemMenu>getRightList() {
+    public List<ItemMenu> getRightList() {
         return rightList;
     }
-
-
 
 
     public class ItemMenu {
