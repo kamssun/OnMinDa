@@ -33,25 +33,25 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-//    signingConfigs {
-//        mclientConfig {
-//            storeFile file("mclient.keystore")
-//            storePassword "a4v4f7e0"
-//            keyAlias "mclient.keystore"
-//            keyPassword "a4v4f7e0"
-//        }
-//    }
+    signingConfigs {
+        mclientConfig {
+            storeFile file("android.keystore")
+            storePassword "newthread"
+            keyAlias "android.keystore"
+            keyPassword "newthread"
+        }
+    }
 
     buildTypes {
         debug {
             runProguard false
-//            signingConfig signingConfigs.mclientConfig
+            signingConfig signingConfigs.mclientConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
 
         release {
             runProguard false
-//            signingConfig signingConfigs.mclientConfig
+            signingConfig signingConfigs.mclientConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
