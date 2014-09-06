@@ -131,6 +131,9 @@
         <activity
                 android:name=".ui.exam.ExamArrangeDetailActivity"
                 android:screenOrientation="portrait" />
+        <activity
+                android:name=".activity.main.SchoolNetActivity"
+                android:screenOrientation="portrait" />
         <receiver android:name="com.newthread.android.receiver.CouserReceiver" >
             <intent-filter>
                 <action android:name="com.newthread.android.action.CourserRemind" />

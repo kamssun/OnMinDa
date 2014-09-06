@@ -64,8 +64,12 @@ public class OnCampusLeftFragment extends ListFragment {
 
 		HashMap<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("title", "校园新闻");
+        data.add(map2);
+
+        HashMap<String, Object> map3 = new HashMap<String, Object>();
+        map3.put("title", "校园网连接");
 		// map2.put("icon", R.drawable.ic_on_campus_right_setting);
-		data.add(map2);
+		data.add(map3);
 		adapter = new SimpleAdapter(con, data, R.layout.view_left_menu_item,
 				new String[] { "title" },
 				new int[] { R.id.left_menu_list_title });
@@ -77,7 +81,7 @@ public class OnCampusLeftFragment extends ListFragment {
 
     public void refreshLogo() {
         logoView.setVisibility(View.VISIBLE);
-        YoYo.with(Techniques.DropOut)
+        YoYo.with(Techniques.Shake)
                 .duration(2000)
                 .playOn(logoView);
     }
@@ -101,7 +105,10 @@ public class OnCampusLeftFragment extends ListFragment {
 			// 校园新闻
 			Intent _intent = new Intent(con, NewsActivity.class);
 			startActivity(_intent);
-		}
+		} else if (3 == position) {
+            Intent _intent = new Intent(con, SchoolNetActivity.class);
+            startActivity(_intent);
+        }
 		((Activity) con).overridePendingTransition(R.anim.in_from_right,
 				R.anim.out_to_left);
 
