@@ -214,8 +214,6 @@ public class DatabaseManager<T> {
                 whereArgs[i] = args.get(i);
             }
             whereClause = whereClause.substring(0, whereClause.lastIndexOf(" and "));
-            Loger.V(whereClause);
-
             List<T> list = new ArrayList<T>();
             T t = kind.newInstance();
             db.getReadableDatabase();
