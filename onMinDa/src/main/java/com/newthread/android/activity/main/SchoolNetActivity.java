@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
@@ -28,60 +31,67 @@ import org.kymjs.aframe.http.KJStringParams;
 import org.kymjs.aframe.http.StringCallBack;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * 校园网
  */
 public class SchoolNetActivity extends SherlockActivity {
     private TextView hintTv;
-    private Button reconnectBtn;
+    //    private Button reconnectBtn;
     private String account, password;
     private static final String WIFINAME = "SCUEC";
-    private static final String URL = "http://10.231.192.37/srun_portal.html?&ac_id=8&sys=";
+    private static final String URL = "http://10.231.192.37/cgi-bin/srun_portal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_net);
-        account = "11061181";
-        password = "05001X";
+//        account = "11061181";
+//        password = "05001X";
         MyPreferenceManager.init(getApplicationContext());
-        account = MyPreferenceManager.getString("admin_system_account", "");
-        password = MyPreferenceManager.getString("admin_system_password", "");
+        account = MyPreferenceManager.getString("SchoolWifiName", "");
+        password = MyPreferenceManager.getString("SchoolWifiPassWord", "");
+        if (account .equals("")|| password.equals("")) {
+            account = MyPreferenceManager.getString("admin_system_account", "");
+            password = MyPreferenceManager.getString("admin_system_password", "");
+        }
         initView();
         if (needLogin()) {
             showLoginDialog();
         } else {
-//            if (WifiHelper.getInstance(getApplicationContext()).getWifiState() == 1) {
-//                hintTv.setText("Wi-Fi未打开，请打开Wi-Fi后重试");
-//            } else {
-//                WifiHelper.getInstance(getApplicationContext()).registWifiRecevier(new WifiHelper.CallBack() {
-//                    @Override
-//                    public void getScanResult(List<ScanResult> scanResults) {
-//                        ScanResult scanResult = null;
-//                        for (ScanResult tScanResult : scanResults) {
-//                            if (tScanResult.SSID.equals(WIFINAME)) {
-//                                scanResult = tScanResult;
-//                            }
-//                        }
-//                        if (scanResult != null) {
-//                            hintTv.setText("扫描到校园网" + scanResult.SSID + "尝试自动连接。。。");
-//                            if (WifiHelper.getInstance(getApplicationContext()).connectWifi(scanResult)) {
-//                                hintTv.setText("自动连接校园成功，尝试登录校园网");
-//                                connect();
-//                            } else {
-//                                hintTv.setText("自动连接校园失败，请手动登录校园网");
-//                            }
+            if (WifiHelper.getInstance(getApplicationContext()).getWifiState() == 1) {
+                hintTv.setText("Wi-Fi未打开，请打开Wi-Fi后重试");
+            } else {
+                WifiHelper.getInstance(getApplicationContext()).registWifiRecevier(new WifiHelper.CallBack() {
+                    @Override
+                    public void getScanResult(List<ScanResult> scanResults) {
+                        ScanResult scanResult = null;
+                        for (ScanResult tScanResult : scanResults) {
+                            if (tScanResult.SSID.equals(WIFINAME)) {
+                                scanResult = tScanResult;
+                            }
+                        }
+                        if (scanResult != null) {
+                            if (WifiHelper.getInstance(getApplicationContext()).connectWifi(scanResult)) {
+                                try {
+                                    Thread.currentThread();
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException ie) {
+                                }
+                                connect();
+                            } else {
+                                hintTv.setText("自动连接校园失败，请手动登录校园网");
+                            }
 //                            reconnectBtn.setVisibility(View.VISIBLE);
-//                        } else {
-//                            hintTv.setText("未扫描到校园网");
-//                        }
-//                        WifiHelper.getInstance(getApplicationContext()).unRegistWifiRecevier();
-//                    }
-//                });
-//                WifiHelper.getInstance(getApplicationContext()).scanWifi();
-//            }
-            connect();
+                        } else {
+                            hintTv.setText("未扫描到校园网");
+                        }
+                        WifiHelper.getInstance(getApplicationContext()).unRegistWifiRecevier();
+                    }
+                });
+                WifiHelper.getInstance(getApplicationContext()).scanWifi();
+            }
         }
     }
 
@@ -92,17 +102,17 @@ public class SchoolNetActivity extends SherlockActivity {
         ab.setDisplayShowHomeEnabled(false);
         ab.setTitle("校园网连接");
         hintTv = (TextView) this.findViewById(R.id.hint);
-        reconnectBtn = (Button) this.findViewById(R.id.connect);
-        reconnectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                connect();
-            }
-        });
+//        reconnectBtn = (Button) this.findViewById(R.id.connect);
+//        reconnectBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                connect();
+//            }
+//        });
     }
 
     private void connect() {
-        reconnectBtn.setVisibility(View.GONE);
+//        reconnectBtn.setVisibility(View.GONE);
         KJHttp kjh = new KJHttp();
         KJStringParams params = new KJStringParams();
         params.put("username", account);
@@ -116,21 +126,35 @@ public class SchoolNetActivity extends SherlockActivity {
         kjh.post(URL, params, new StringCallBack() {
             @Override
             public void onSuccess(String json) {
-                Loger.V(json);
-                hintTv.setText("连接成功");
-                hintTv.setTextColor(Color.RED);
-                hintTv.setTextSize(28);
-                Toast.makeText(getApplicationContext(), "连接成功", Toast.LENGTH_LONG).show();
-                reconnectBtn.setVisibility(View.GONE);
+                if (json.contains("/srun_portal.html?action=login_ok")) {
+                    connectSucessful();
+                } else {
+                    connectFail();
+                }
             }
 
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
-                hintTv.setText("连接失败，请打开Wi-Fi并连接SCUEC热点后重新连接");
-                reconnectBtn.setVisibility(View.VISIBLE);
+                hintTv.setText("连接失败，请尝试重新连接");
+//                reconnectBtn.setVisibility(View.VISIBLE);
                 // hint text
             }
         });
+    }
+
+    private void connectSucessful() {
+        hintTv.setText("连接成功");
+        hintTv.setTextColor(Color.RED);
+        hintTv.setTextSize(28);
+        Toast.makeText(getApplicationContext(), "连接成功", Toast.LENGTH_LONG).show();
+        MyPreferenceManager.commitString("SchoolWifiName", account);
+        MyPreferenceManager.commitString("SchoolWifiPassWord", password);
+//        reconnectBtn.setVisibility(View.GONE);
+    }
+
+    private void connectFail() {
+        hintTv.setText("连接失败,请尝试更改默认登录");
+//        reconnectBtn.setVisibility(View.GONE);
     }
 
     @Override
@@ -153,11 +177,13 @@ public class SchoolNetActivity extends SherlockActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("更改默认登录").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return true;
     }
+
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
@@ -168,8 +194,7 @@ public class SchoolNetActivity extends SherlockActivity {
 
         }
         if (item.getTitle().equals("更改默认登录")) {
-
-
+            showLoginDialog2();
         }
         return super.onMenuItemSelected(featureId, item);
 
@@ -206,6 +231,32 @@ public class SchoolNetActivity extends SherlockActivity {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 finish();
+            }
+        });
+        builder.create().show();
+    }
+
+    protected void showLoginDialog2() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("登录");
+        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.view_login_dialog, null);
+        builder.setView(view);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                account = ((EditText) view.findViewById(R.id.username_edit)).getText().toString();
+                password = ((EditText) view.findViewById(R.id.password_edit)).getText().toString();
+                connect();
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
         builder.create().show();
