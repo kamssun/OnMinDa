@@ -58,7 +58,11 @@ public class NewsActivity extends SherlockFragmentActivity {
                     @Override
                     public void onPageSelected(int position) {
                         // 记录最后所在的pager位置
-                        if(position==1&&temp1){
+                        if(position==0&&temp){
+                            temp=false;
+                            mAdapter.getNewsFragmentOne().getListView().setRefreshing();
+                        }
+                        else if(position==1&&temp1){
                             temp1=false;
                             mAdapter.getNewsFragmentTwo().getListView().setRefreshing();
                         }else if(position==2&&temp2){
@@ -71,11 +75,6 @@ public class NewsActivity extends SherlockFragmentActivity {
                     public void onPageScrolled(int position,float positionOffset, int positionOffsetPixels) {
                         // 滑动刷新前进行判断是否刚刚刷下
 
-                        if(temp){
-                            temp=false;
-                            Loger.V(temp);
-                            mAdapter.getNewsFragmentOne().getListView().setRefreshing();
-                        }
                     }
 
                     @Override

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/library_actionbarsherlock" />
+            <option value="$PROJECT_DIR$/library_crouton" />
+            <option value="$PROJECT_DIR$/library_kjframe" />
+            <option value="$PROJECT_DIR$/library_pulltorefresh" />
+            <option value="$PROJECT_DIR$/library_slidingmenu" />
+            <option value="$PROJECT_DIR$/library_swipelistview" />
+            <option value="$PROJECT_DIR$/library_viewpager" />
+            <option value="$PROJECT_DIR$/onMinDa" />
+            <option value="$PROJECT_DIR$/viewanimations" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
+
