@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OnMinDa.iml" filepath="$PROJECT_DIR$/OnMinDa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_actionbarsherlock/library_actionbarsherlock.iml" filepath="$PROJECT_DIR$/library_actionbarsherlock/library_actionbarsherlock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_crouton/library_crouton.iml" filepath="$PROJECT_DIR$/library_crouton/library_crouton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_kjframe/library_kjframe.iml" filepath="$PROJECT_DIR$/library_kjframe/library_kjframe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_pulltorefresh/library_pulltorefresh.iml" filepath="$PROJECT_DIR$/library_pulltorefresh/library_pulltorefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_slidingmenu/library_slidingmenu.iml" filepath="$PROJECT_DIR$/library_slidingmenu/library_slidingmenu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_swipelistview/library_swipelistview.iml" filepath="$PROJECT_DIR$/library_swipelistview/library_swipelistview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_viewpager/library_viewpager.iml" filepath="$PROJECT_DIR$/library_viewpager/library_viewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onMinDa/onMinDa.iml" filepath="$PROJECT_DIR$/onMinDa/onMinDa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewanimations/viewanimations.iml" filepath="$PROJECT_DIR$/viewanimations/viewanimations.iml" />
+    </modules>
+  </component>
+</project>
+
