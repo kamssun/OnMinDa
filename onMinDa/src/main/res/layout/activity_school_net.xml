@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
         >
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="正在连接..."
-              android:id="@+id/hint"
-              android:gravity="center"
-              android:textColor="@color/gray"
-              android:textSize="16sp"
-              android:layout_centerHorizontal="true"
-              android:layout_above="@+id/connect"/>
 
-    <Button
-            android:id="@+id/connect"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_width="fill_parent"
+    <TextView
+            android:id="@+id/hint"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_blue_selector"
-            android:text="重新连接"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            android:padding="25dp"
+            android:text="正在扫描"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_centerInParent="true"
+                  android:id="@+id/linearLayout">
+        <Button
+                android:id="@+id/connect"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_blue_selector"
+                android:text="重新连接"
+                android:textColor="@android:color/white"
+                android:visibility="invisible"
+                android:textSize="20sp"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>
