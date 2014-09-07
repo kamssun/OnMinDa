@@ -15,7 +15,6 @@ import org.jsoup.select.Elements;
 import com.newthread.android.bean.LibraryQueryItemInfo;
 import com.newthread.android.bean.LibraryQueryListReturnPara;
 import com.newthread.android.global.HandleMessage;
-import com.newthread.android.util.Logger;
 
 import android.content.Context;
 
@@ -34,7 +33,6 @@ public class LibraryQuery {
 		this.returnPara = retrunPara;
 		if (DEBUG) {
 			this.url = url;
-			Logger.i("URL:", url);
 //				this.url = "http://coin.lib.scuec.edu.cn/opac/openlink.php?location=ALL&title="+ new String("java".getBytes(),"ISO-8859-1") +"&doctype=ALL&lang_code=ALL&match_flag=forward&displaypg=20&showmode=list&orderby=DESC&sort=CATA_DATE&onlylendable=no&with_ebook=&with_ebook=";
 		} else {
 			this.url = url;
@@ -47,31 +45,25 @@ public class LibraryQuery {
 			Document doc = null;
 			if (url != null) {
 				doc = Jsoup.parse(new URL(url), TIMEOUTMILLIS);
-				Logger.i("doc.tostring", "" + doc.toString());
 			} else {
-				Logger.i("Exception", "Doc == null");
 				return HandleMessage.NO_CONTENT;
 			}
 
 			if (doc != null) {
 //				Elements es = doc.getElementsByClass("book_list_info");
 				Elements es = doc.select("li.book_list_info");
-				Logger.i("quer-es.size", "" + es.size());
-				
 				String num;
 				try {
 					num = doc.select("strong.red").first().text();
 					returnPara.setTotalSize(num);
 					System.out.println("Total:" + num);
 				} catch (NullPointerException e) {
-					Logger.i("Exception", "total == 0");
 					e.toString();
 					returnPara.setTotalSize("0");
 					System.out.println("total == 0");
 					return HandleMessage.NO_CONTENT;
 				} catch (Exception e) {
 					e.toString();
-					Logger.i("getTotalsize", "" + e.toString());
 
 					return HandleMessage.NO_CONTENT;
 				}
@@ -131,27 +123,21 @@ public class LibraryQuery {
 
 			}
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (IOException e) {
 			e.printStackTrace();
-			Logger.i("IOException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (Exception e) {
-			Logger.i("Exception", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 			return HandleMessage.QUERY_ERROR;
 		}

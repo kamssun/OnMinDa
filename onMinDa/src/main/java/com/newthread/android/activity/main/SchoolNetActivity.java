@@ -14,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
+import com.newthread.android.bean.ExamArrangeInfo;
 import com.newthread.android.ui.coursechart.CourseChartLoginActivity;
 import com.newthread.android.util.Loger;
 import com.newthread.android.util.MyPreferenceManager;
@@ -34,15 +36,15 @@ public class SchoolNetActivity extends SherlockActivity {
     private TextView hintTv;
     private Button reconnectBtn;
     private String account, password;
-    private static final String WIFINAME="SCUEC";
-    private static final String URL = "http://10.231.192.37/cgi-bin/srun_portal";
+    private static final String WIFINAME = "SCUEC";
+    private static final String URL = "http://10.231.192.37/srun_portal.html?&ac_id=8&sys=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_net);
-//        account = "11061181";
-//        password = "05001X";
+        account = "11061181";
+        password = "05001X";
         MyPreferenceManager.init(getApplicationContext());
         account = MyPreferenceManager.getString("admin_system_account", "");
         password = MyPreferenceManager.getString("admin_system_password", "");
@@ -50,35 +52,36 @@ public class SchoolNetActivity extends SherlockActivity {
         if (needLogin()) {
             showLoginDialog();
         } else {
-            if (WifiHelper.getInstance(getApplicationContext()).getWifiState() == 1) {
-                hintTv.setText("Wi-Fi未打开，请打开Wi-Fi后重试");
-            } else {
-                WifiHelper.getInstance(getApplicationContext()).registWifiRecevier(new WifiHelper.CallBack() {
-                    @Override
-                    public void getScanResult(List<ScanResult> scanResults) {
-                        ScanResult scanResult = null;
-                        for (ScanResult tScanResult : scanResults) {
-                            if (tScanResult.SSID.equals("---HHHH----")) {
-                                scanResult = tScanResult;
-                            }
-                        }
-                        if (scanResult != null) {
-                            hintTv.setText("扫描到校园网"+scanResult.SSID+"尝试自动连接。。。");
-                            if(WifiHelper.getInstance(getApplicationContext()).connectWifi(scanResult)){
-                                hintTv.setText("自动连接校园成功，尝试登录校园网");
-                            }else{
-                                hintTv.setText("自动连接校园失败，请手动登录校园网");
-                            }
-//                            connect();
-                            reconnectBtn.setVisibility(View.VISIBLE);
-                        }else{
-                            hintTv.setText("未扫描到校园网");
-                        }
-                        WifiHelper.getInstance(getApplicationContext()).unRegistWifiRecevier();
-                    }
-                });
-                WifiHelper.getInstance(getApplicationContext()).scanWifi();
-            }
+//            if (WifiHelper.getInstance(getApplicationContext()).getWifiState() == 1) {
+//                hintTv.setText("Wi-Fi未打开，请打开Wi-Fi后重试");
+//            } else {
+//                WifiHelper.getInstance(getApplicationContext()).registWifiRecevier(new WifiHelper.CallBack() {
+//                    @Override
+//                    public void getScanResult(List<ScanResult> scanResults) {
+//                        ScanResult scanResult = null;
+//                        for (ScanResult tScanResult : scanResults) {
+//                            if (tScanResult.SSID.equals(WIFINAME)) {
+//                                scanResult = tScanResult;
+//                            }
+//                        }
+//                        if (scanResult != null) {
+//                            hintTv.setText("扫描到校园网" + scanResult.SSID + "尝试自动连接。。。");
+//                            if (WifiHelper.getInstance(getApplicationContext()).connectWifi(scanResult)) {
+//                                hintTv.setText("自动连接校园成功，尝试登录校园网");
+//                                connect();
+//                            } else {
+//                                hintTv.setText("自动连接校园失败，请手动登录校园网");
+//                            }
+//                            reconnectBtn.setVisibility(View.VISIBLE);
+//                        } else {
+//                            hintTv.setText("未扫描到校园网");
+//                        }
+//                        WifiHelper.getInstance(getApplicationContext()).unRegistWifiRecevier();
+//                    }
+//                });
+//                WifiHelper.getInstance(getApplicationContext()).scanWifi();
+//            }
+            connect();
         }
     }
 
@@ -113,6 +116,7 @@ public class SchoolNetActivity extends SherlockActivity {
         kjh.post(URL, params, new StringCallBack() {
             @Override
             public void onSuccess(String json) {
+                Loger.V(json);
                 hintTv.setText("连接成功");
                 hintTv.setTextColor(Color.RED);
                 hintTv.setTextSize(28);
@@ -139,6 +143,7 @@ public class SchoolNetActivity extends SherlockActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     // 对返回键进行监听
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
@@ -148,7 +153,27 @@ public class SchoolNetActivity extends SherlockActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("更改默认登录").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        return true;
+    }
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+                break;
 
+        }
+        if (item.getTitle().equals("更改默认登录")) {
+
+
+        }
+        return super.onMenuItemSelected(featureId, item);
+
+    }
 
     // 判断是否需要登录
     private boolean needLogin() {
@@ -161,7 +186,7 @@ public class SchoolNetActivity extends SherlockActivity {
     // 登录对话框
     protected void showLoginDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("请先尝试登录教务系统,如若您改了校园网密码，请按右上角的重新登录校园网按钮");
+        builder.setMessage("请先尝试登录教务系统,如若您改了校园网密码，请按右上角的“更改默认登录”按钮");
         builder.setTitle("提示");
 
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {

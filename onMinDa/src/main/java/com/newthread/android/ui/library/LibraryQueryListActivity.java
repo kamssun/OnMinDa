@@ -31,7 +31,6 @@ import com.newthread.android.bean.LibraryQueryListReturnPara;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.service.LibraryQuery;
 import com.newthread.android.util.CroutonUtil;
-import com.newthread.android.util.Logger;
 
 public class LibraryQueryListActivity extends SherlockFragmentActivity implements ActionBar.OnNavigationListener {
 	private ActionBar ab;
@@ -316,8 +315,7 @@ public class LibraryQueryListActivity extends SherlockFragmentActivity implement
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		Logger.i("nextHref::", nextPageUrl);
-		
+
 		// 开启查询新线程
 		new Thread(new QueryThread(LibraryQueryListActivity.this, nextPageUrl)).start();
 	}

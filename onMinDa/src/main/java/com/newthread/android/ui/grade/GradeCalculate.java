@@ -11,7 +11,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
 import com.newthread.android.bean.GradeInfo;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.StringUtils;
 
 public class GradeCalculate extends SherlockFragmentActivity {
@@ -47,11 +46,9 @@ public class GradeCalculate extends SherlockFragmentActivity {
 		result = (TextView) this.findViewById(R.id.result);
 		courseNum = (TextView) this.findViewById(R.id.course_num);
 
-		Logger.i("list.size", list.size() + "");
 
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).isSelected()) {
-				Logger.i("i: ", list.get(i).getCourseGrade());
 			}
 		}
 

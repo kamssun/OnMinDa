@@ -89,7 +89,7 @@ public class WifiHelper {
 
     public Boolean  connectWifi(ScanResult scanResult) {
         WifiConnect wifiConnect = new WifiConnect(wifiManager);
-        return wifiConnect.Connect(scanResult.SSID, "dongqiaqia711", WifiConnect.WifiCipherType.WIFICIPHER_WPA);
+        return wifiConnect.Connect(scanResult.SSID, "dongqiaqia711", WifiConnect.WifiCipherType.WIFICIPHER_NOPASS);
     }
 }
 
