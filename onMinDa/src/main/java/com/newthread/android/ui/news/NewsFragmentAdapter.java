@@ -2,9 +2,7 @@ package com.newthread.android.ui.news;
 
 import java.util.ArrayList;
 import com.newthread.android.bean.NewsListItem;
-import com.newthread.android.util.Logger;
 import android.content.Context;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;

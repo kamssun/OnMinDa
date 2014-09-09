@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import org.apache.commons.httpclient.params.HttpParams;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -33,7 +31,6 @@ import android.util.Log;
 import com.newthread.android.bean.GradeInfo;
 import com.newthread.android.bean.GradeQueryVo;
 import com.newthread.android.global.HandleMessage;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.StringUtils;
 
 /**
@@ -318,11 +315,6 @@ public class GradeQuery {
 		List<NameValuePair> params = new ArrayList<NameValuePair>(); // 使用NameValuePair来保存要传递的Post参数
 		params.add(new BasicNameValuePair("qXndm_all", vo.getYear())); 	// 学年
 		params.add(new BasicNameValuePair("qXqdm_all", vo.getSemester()));	// 学期
-		
-		System.out.println("____________________________________________");
-		Logger.i("para", "" + vo.getYear() + ", " + vo.getSemester());
-		System.out.println("____________________________________________");
-		
 		params.add(new BasicNameValuePair("qKclbdm", ""));	// 课程类别
 		params.add(new BasicNameValuePair("qKcxzdm", ""));	// 课程性质
 		
@@ -334,8 +326,6 @@ public class GradeQuery {
 			if (httpResp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { // 响应通过
 				String result = EntityUtils.toString(httpResp.getEntity(),
 						"UTF-8");
-
-				System.out.println("____________________________________________");
 				if (url.equals(URL4) && !StringUtils.isEmpty(result)) {
 					System.out.println(result);
 					
@@ -347,27 +337,21 @@ public class GradeQuery {
 				return HandleMessage.QUERY_ERROR;
 			}
 		} catch (MalformedURLException e) {
-			Log.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			return HandleMessage.QUERY_ERROR;
 		} catch (IllegalArgumentException e) {
-			Log.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			return HandleMessage.QUERY_ERROR;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			Log.i("ClientProtocolException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
-			Log.i("SocketTimeoutException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (IOException e) {
 			e.printStackTrace();
-			Log.i("IOException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (Exception e) {
-			Log.i("Exception-connectPost", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 			return HandleMessage.QUERY_ERROR;
 		}

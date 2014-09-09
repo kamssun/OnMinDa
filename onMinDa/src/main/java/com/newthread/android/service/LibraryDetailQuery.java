@@ -12,7 +12,6 @@ import org.jsoup.select.Elements;
 import com.newthread.android.bean.LibraryDetailBookInfo;
 import com.newthread.android.bean.LibraryDetailListItemInfo;
 import com.newthread.android.global.HandleMessage;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.StringUtils;
 
 public class LibraryDetailQuery {
@@ -26,8 +25,6 @@ public class LibraryDetailQuery {
 		this.url = url;
 		this.book = book;
 		if (DEBUG) {
-
-			Logger.i("URL:", url);
 		} else {
 			this.url = url;
 		}
@@ -38,9 +35,7 @@ public class LibraryDetailQuery {
 			Document doc = null;
 			if (url != null) {
 				doc = Jsoup.parse(new URL(url), TIMEOUTMILLIS);
-				Logger.i("doc.tostring", "" + doc.toString());
 			} else {
-				Logger.i("Exception", "URL == null");
 				return HandleMessage.NO_CONTENT;
 			}
 
@@ -116,27 +111,21 @@ public class LibraryDetailQuery {
 				}
 			}
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (IOException e) {
 			e.printStackTrace();
-			Logger.i("IOException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (Exception e) {
-			Logger.i("Exception", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 			return HandleMessage.QUERY_ERROR;
 		}

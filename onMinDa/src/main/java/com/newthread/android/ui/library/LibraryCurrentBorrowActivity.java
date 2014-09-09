@@ -47,7 +47,6 @@ import com.newthread.android.bean.CurrentBorrowItem;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.service.ReNewBookPost;
 import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.MyPreferenceManager;
 import com.newthread.android.util.StringUtils;
 
@@ -208,7 +207,6 @@ public class LibraryCurrentBorrowActivity extends SherlockActivity {
 						Toast.LENGTH_SHORT).show();
 				break;
 			case HandleMessage.QUERY_ERROR:
-				Logger.i("library_login", "ERROR------");
 				// 查询失败
 				Toast.makeText(getApplicationContext(), R.string.net_error,
 						Toast.LENGTH_SHORT).show();
@@ -271,28 +269,22 @@ public class LibraryCurrentBorrowActivity extends SherlockActivity {
 						+ "");
 			}
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			result = HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			result = HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 		} catch (IOException e) {
 			e.printStackTrace();
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("IOException", "QUERY_ERROR");
 		} catch (Exception e) {
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("Exception", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 		}
 		return result;
@@ -352,29 +344,23 @@ public class LibraryCurrentBorrowActivity extends SherlockActivity {
 
 				result = HandleMessage.QUERY_SUCCESS;
 			} catch (MalformedURLException e) {
-				Logger.i("MalformedURLException", "MalformedURLException");
 				e.printStackTrace();
 				result = HandleMessage.NO_CONTENT;
 			} catch (IllegalArgumentException e) {
-				Logger.i("IllegalArgumentException", "IllegalArgumentException");
 				e.printStackTrace();
 				result = HandleMessage.NO_CONTENT;
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
 				result = HandleMessage.QUERY_ERROR;
-				Logger.i("ClientProtocolException", "QUERY_ERROR");
 			} catch (SocketTimeoutException e) {
 				e.printStackTrace();
 				result = HandleMessage.QUERY_ERROR;
-				Logger.i("SocketTimeoutException", "QUERY_ERROR");
 			} catch (IOException e) {
 				e.printStackTrace();
 				result = HandleMessage.QUERY_ERROR;
-				Logger.i("IOException", "QUERY_ERROR");
 			} catch (Exception e) {
 				// 错误地方
 				result = HandleMessage.CURRENT_BORROW_NULL;
-				Logger.i("Exception", "CURRENT_BORROW_NULL: " + e.toString());
 				e.printStackTrace();
 			}
 

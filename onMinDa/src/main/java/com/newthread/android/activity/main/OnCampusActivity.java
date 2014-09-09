@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.view.KeyEvent;
-import com.newthread.android.util.Loger;
 import org.json.JSONException;
 import org.json.JSONObject;
 

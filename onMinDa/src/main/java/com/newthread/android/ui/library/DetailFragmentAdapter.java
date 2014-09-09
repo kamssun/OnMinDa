@@ -2,7 +2,6 @@ package com.newthread.android.ui.library;
 
 
 import com.newthread.android.bean.LibraryDetailBookInfo;
-import com.newthread.android.util.Logger;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -23,7 +22,6 @@ public class DetailFragmentAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
-		Logger.i("getItem: ", "" + position);
 		if (position == 0) {
 			return new DetailFragmentOne(con);
 		} else {
@@ -41,8 +39,7 @@ public class DetailFragmentAdapter extends FragmentPagerAdapter {
 		DetailFragmentOne fragmentOne = null;
 		
 		if (0 == position) {
-			Logger.i("instantiateItem-0", "update-0");
-			
+
 			fragmentOne = (DetailFragmentOne) super.instantiateItem(container, position);  
 			if (bookInfo != null) {
 				fragmentOne.updateData(bookInfo);
@@ -50,8 +47,7 @@ public class DetailFragmentAdapter extends FragmentPagerAdapter {
 			
 			return fragmentOne;
 		} else if (1 == position) {
-			Logger.i("instantiateItem-1", "update-1");
-			
+
 			DetailFragmentTwo fragmentTwo = (DetailFragmentTwo) super.instantiateItem(container, position);
 			if (bookInfo != null) {
 				fragmentTwo.updateData(bookInfo);

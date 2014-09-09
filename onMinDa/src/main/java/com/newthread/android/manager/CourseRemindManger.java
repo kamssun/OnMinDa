@@ -16,7 +16,6 @@ import com.newthread.android.activity.main.OnCampusActivity;
 import com.newthread.android.bean.SingleCourseInfo;
 import com.newthread.android.clock.TimeManager;
 import com.newthread.android.clock.TimeTask;
-import com.newthread.android.util.Loger;
 import com.newthread.android.util.TimeUtil;
 
 import java.io.File;

@@ -21,7 +21,6 @@ import com.newthread.android.global.HandleMessage;
 import com.newthread.android.service.LibraryDetailQuery;
 import com.newthread.android.util.AndroidDB;
 import com.newthread.android.util.CroutonUtil;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.TimeUtil;
 import com.viewpagerindicator.UnderlinePageIndicator;
 
@@ -90,19 +89,13 @@ public class LibraryDetailActivity extends SherlockFragmentActivity {
 			if (!onPause) {
 				switch (msg.what) {
 				case HandleMessage.QUERY_SUCCESS:
-					Logger.i("handleMessage-title", bookInfo.getTitle());
-
 					mAdapter.notifyDataSetChanged();
-
-					Logger.i("QUERY_SUCCESS", "QUERY_SUCCESS");
 					break;
 				case HandleMessage.QUERY_ERROR:
-					Logger.i("QUERY_ERROR", "QUERY_ERROR");
 					Toast.makeText(getApplicationContext(), R.string.net_error,
 							Toast.LENGTH_SHORT).show();
 					break;
 				case HandleMessage.NO_CONTENT:
-					Logger.i("NO_CONTENT", "NO_CONTENT");
 					Toast.makeText(getApplicationContext(), R.string.net_error,
 							Toast.LENGTH_SHORT).show();
 					break;

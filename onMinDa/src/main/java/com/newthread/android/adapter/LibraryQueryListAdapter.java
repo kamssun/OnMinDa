@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.newthread.android.R;
 import com.newthread.android.bean.LibraryQueryItemInfo;
-import com.newthread.android.util.Logger;
 
 public class LibraryQueryListAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
@@ -25,7 +24,6 @@ public class LibraryQueryListAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		Logger.i("getCount", "" + list.size()); 
 		return list.size();
 	}
 

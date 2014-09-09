@@ -27,7 +27,6 @@ import com.newthread.android.bean.NewsListItem;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.service.NewsListQuery;
 import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.MyAnimation;
 import com.newthread.android.util.StringUtils;
 
@@ -122,8 +121,6 @@ public class NewsFragmentOne extends Fragment {
 		// 从缓存中提取新闻列表信息
 		list = AndroidDB.getNewsListByType(con, "1");
 		
-		Logger.i("list.size", list.size() + "");
-		
 		adapter = new NewsListAdapter(con, list);
 		listView.setAdapter(adapter);
 		
@@ -197,7 +194,6 @@ public class NewsFragmentOne extends Fragment {
 			case HandleMessage.QUERY_SUCCESS:
 				// 成功
 				isLoading = false;
-				Logger.i("NewsFragmentOne__handleMessage", "********QUERY_SUCCESS " + adapter.getCount());
 				adapter.notifyDataSetChanged();
 				
 				if (list.size() > 0) {
@@ -208,12 +204,9 @@ public class NewsFragmentOne extends Fragment {
 			case HandleMessage.QUERY_ERROR:
 				// 失败
 				isLoading = false;
-				Logger.i("NewsFragmentOne__handleMessage", "QUERY_ERROR");
-				
 				break;
 			case HandleMessage.NO_CONTENT:
 				isLoading = false;
-				Logger.i("NewsFragmentOne__handleMessage", "NO_CONTENT");
 
 				break;
 			default:
@@ -227,7 +220,6 @@ public class NewsFragmentOne extends Fragment {
 	public void loadMore() {
 		// 下页URL
 		final int nextPageNum = (list.size() / 12) + 1;
-		Logger.i("loadMore", "page.size " + nextPageNum);
 		new Thread(new Runnable() {
 
 			@Override
@@ -257,7 +249,6 @@ public class NewsFragmentOne extends Fragment {
 			result = new NewsListQuery(list, 0).query();
 			
 			fragmentHandler.sendEmptyMessage(result);
-			Logger.i("NewsFragmentOne_QueryThread", "result: "  + result);
 		}
 		
 	}

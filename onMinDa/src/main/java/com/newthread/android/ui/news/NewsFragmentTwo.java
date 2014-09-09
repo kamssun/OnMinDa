@@ -27,7 +27,6 @@ import com.newthread.android.bean.NewsListItem;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.service.NewsListQuery;
 import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.MyAnimation;
 import com.newthread.android.util.StringUtils;
 
@@ -196,11 +195,9 @@ public class NewsFragmentTwo extends Fragment {
 			case HandleMessage.QUERY_ERROR:
 				// 失败
 				isLoading = false;
-				Logger.i("NewsFragmentTwo__handleMessage", "QUERY_ERROR");
 				break;
 			case HandleMessage.NO_CONTENT:
 				isLoading = false;
-				Logger.i("NewsFragmentTwo__handleMessage", "NO_CONTENT");
 				break;
 			default:
 				break;
@@ -214,7 +211,6 @@ public class NewsFragmentTwo extends Fragment {
 		
 		// 下页URL
 		final int nextPageNum = (list.size() / 12) + 1;
-		Logger.i("loadMore", "page.size " + nextPageNum);
 		new Thread(new Runnable() {
 
 			@Override
@@ -247,7 +243,6 @@ public class NewsFragmentTwo extends Fragment {
 //			msg.what = result;
 //			handler.sendMessage(msg);
 //			handler.sendEmptyMessage(result);
-			Logger.i("NewsFragmentOne_QueryThread", "result: "  + result);
 		}
 		
 	}

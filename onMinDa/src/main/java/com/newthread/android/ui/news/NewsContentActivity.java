@@ -22,7 +22,6 @@ import com.newthread.android.bean.NewsContentVo;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.global.URL;
 import com.newthread.android.service.NewsContentLoader;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.StringUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -123,8 +122,6 @@ public class NewsContentActivity extends SherlockActivity {
 			@Override
 			public void run() {
 				int result = new NewsContentLoader(getApplicationContext(), vo, url).loadContent();
-				Logger.i(TAG, "result: " + result);
-				
 				handler.sendEmptyMessage(result);
 			}
 			
@@ -138,7 +135,6 @@ public class NewsContentActivity extends SherlockActivity {
 		url = this.getIntent().getCharSequenceExtra("href").toString();
 		timeStr = this.getIntent().getCharSequenceExtra("time").toString() != null ? this.getIntent().getCharSequenceExtra("time").toString() : "";
 		titleStr = this.getIntent().getCharSequenceExtra("title").toString() != null ? this.getIntent().getCharSequenceExtra("title").toString() : "";
-		Logger.i("time", timeStr);
 	}
 	
 	// 初始化界面 
@@ -201,8 +197,7 @@ public class NewsContentActivity extends SherlockActivity {
 		@Override
 		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
 			if (loadedImage != null) {
-				Logger.i("onLoadingFailed", "图片下载成功");
-				
+
 				ImageView imageView = (ImageView) view;
 				
 				imageView.setVisibility(View.VISIBLE);
@@ -222,7 +217,6 @@ public class NewsContentActivity extends SherlockActivity {
 		@Override
 		public void onLoadingFailed(String imageUri, View view,
 				FailReason failReason) {
-			Logger.i("onLoadingFailed", "图片下载失败");
 			super.onLoadingFailed(imageUri, view, failReason);
 		}
 

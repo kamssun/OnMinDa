@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-import com.newthread.android.util.Loger;
 import org.apache.http.util.EncodingUtils;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;

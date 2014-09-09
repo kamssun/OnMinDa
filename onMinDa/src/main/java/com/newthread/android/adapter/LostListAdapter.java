@@ -3,8 +3,6 @@ package com.newthread.android.adapter;
 import java.util.ArrayList;
 import com.newthread.android.R;
 import com.newthread.android.bean.LostListItem;
-import com.newthread.android.util.Logger;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,11 +54,9 @@ public class LostListAdapter extends BaseAdapter {
 		LostListItem item = list.get(position);
 		
 		if (item == null) {
-			Logger.i("null", "item == null");
 		}
 		
-		Logger.i("item.getName()", " " + item.getName() + ", size: " + list.size());
-		
+
 		holder.name.setText(item.getName());
 		holder.place.setText(item.getPlace());
 		holder.time.setText(item.getTime());
