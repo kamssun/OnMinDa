@@ -52,7 +52,7 @@ public class OnCampusRightFragment extends ListFragment {
             data.add(map);
         }
 		SimpleAdapter adapter = new SimpleAdapter(
-				con,
+				getActivity().getApplicationContext(),
 				data,
 				R.layout.view_right_menu_item,
 				new String[] { "title" },
