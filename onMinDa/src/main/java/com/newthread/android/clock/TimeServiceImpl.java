@@ -173,6 +173,7 @@ public class TimeServiceImpl implements ITimeService {
             return pi;
         } else if (timeTask.getType().equals("broadcast")) {
             _intent = new Intent(TimeTaskMeta.valueOf(timeTask.getTaskName()).getAction());
+            _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             _intent.putExtras(bundle);
             PendingIntent pi = PendingIntent.getBroadcast(context, i, _intent, 0);
             return pi;
