@@ -60,7 +60,7 @@ public class OnCampusLeftFragment extends ListFragment {
             map.put("title", itemMenu.getTitle());
             data.add(map);
         }
-        adapter = new SimpleAdapter(con, data, R.layout.view_left_menu_item,
+        adapter = new SimpleAdapter(getActivity().getApplicationContext(), data, R.layout.view_left_menu_item,
                 new String[]{"title"},
                 new int[]{R.id.left_menu_list_title});
         listView.setAdapter(adapter);
