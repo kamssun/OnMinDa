@@ -5,9 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.wifi.ScanResult;
-import android.net.wifi.WifiManager;
+import android.net.wifi.WifiInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +19,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
-import com.newthread.android.bean.ExamArrangeInfo;
 import com.newthread.android.ui.coursechart.CourseChartLoginActivity;
-import com.newthread.android.util.Loger;
 import com.newthread.android.util.MyPreferenceManager;
 import com.newthread.android.util.StringUtils;
 import com.newthread.android.util.WifiHelper;
@@ -31,14 +28,13 @@ import org.kymjs.aframe.http.KJStringParams;
 import org.kymjs.aframe.http.StringCallBack;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * 校园网
  */
 public class SchoolNetActivity extends SherlockActivity {
     private TextView hintTv;
-    //    private Button reconnectBtn;
+    private Button connect;
     private String account, password;
     private static final String WIFINAME = "SCUEC";
     private static final String URL = "http://10.231.192.37/cgi-bin/srun_portal";
@@ -50,12 +46,7 @@ public class SchoolNetActivity extends SherlockActivity {
 //        account = "11061181";
 //        password = "05001X";
         MyPreferenceManager.init(getApplicationContext());
-        account = MyPreferenceManager.getString("SchoolWifiName", "");
-        password = MyPreferenceManager.getString("SchoolWifiPassWord", "");
-        if (account .equals("")|| password.equals("")) {
-            account = MyPreferenceManager.getString("admin_system_account", "");
-            password = MyPreferenceManager.getString("admin_system_password", "");
-        }
+        setLoginWifiData();
         initView();
         if (needLogin()) {
             showLoginDialog();
@@ -63,35 +54,59 @@ public class SchoolNetActivity extends SherlockActivity {
             if (WifiHelper.getInstance(getApplicationContext()).getWifiState() == 1) {
                 hintTv.setText("Wi-Fi未打开，请打开Wi-Fi后重试");
             } else {
-                WifiHelper.getInstance(getApplicationContext()).registWifiRecevier(new WifiHelper.CallBack() {
-                    @Override
-                    public void getScanResult(List<ScanResult> scanResults) {
-                        ScanResult scanResult = null;
-                        for (ScanResult tScanResult : scanResults) {
-                            if (tScanResult.SSID.equals(WIFINAME)) {
-                                scanResult = tScanResult;
-                            }
-                        }
-                        if (scanResult != null) {
-                            if (WifiHelper.getInstance(getApplicationContext()).connectWifi(scanResult)) {
-                                try {
-                                    Thread.currentThread();
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException ie) {
-                                }
-                                connect();
-                            } else {
-                                hintTv.setText("自动连接校园失败，请手动登录校园网");
-                            }
-//                            reconnectBtn.setVisibility(View.VISIBLE);
-                        } else {
-                            hintTv.setText("未扫描到校园网");
-                        }
-                        WifiHelper.getInstance(getApplicationContext()).unRegistWifiRecevier();
-                    }
-                });
-                WifiHelper.getInstance(getApplicationContext()).scanWifi();
+                WifiInfo connectInfo=WifiHelper.getInstance(getApplicationContext()).getConnectionInfo();
+                if (!connectInfo.getSSID().equals("\""+WIFINAME+"\"")) {
+                    connectWifi();
+                }else{
+                    hintTv.setText("您已经连接上校园网了");
+                    connectPost();
+                }
             }
+        }
+    }
+
+    private void connectWifi() {
+        setConnectParam();
+        WifiHelper.getInstance(getApplicationContext()).scanWifi();
+    }
+
+    private void setConnectParam() {
+        WifiHelper.getInstance(getApplicationContext()).registWifiRecevier(new WifiHelper.CallBack() {
+            @Override
+            public void getScanResult(List<ScanResult> scanResults) {
+                ScanResult scanResult = null;
+                for (ScanResult tScanResult : scanResults) {
+                    if (tScanResult.SSID.equals(WIFINAME)) {
+                        scanResult = tScanResult;
+                    }
+                }
+                if (scanResult != null) {
+                    if (WifiHelper.getInstance(getApplicationContext()).connectWifi(scanResult)) {
+                       while (!WifiHelper.getInstance(getApplicationContext()).isWifiConnect()) {
+                           try {
+                               Thread.currentThread();
+                               Thread.sleep(100);
+                           } catch (InterruptedException ie) {
+                           }
+                       }
+                        connectPost();
+                    } else {
+                        hintTv.setText("自动连接校园失败，请手动登录校园网");
+                    }
+                } else {
+                    hintTv.setText("未扫描到校园网");
+                }
+                WifiHelper.getInstance(getApplicationContext()).unRegistWifiRecevier();
+            }
+        });
+    }
+
+    private void setLoginWifiData() {
+        account = MyPreferenceManager.getString("SchoolWifiName", "");
+        password = MyPreferenceManager.getString("SchoolWifiPassWord", "");
+        if (account .equals("")|| password.equals("")) {
+            account = MyPreferenceManager.getString("admin_system_account", "");
+            password = MyPreferenceManager.getString("admin_system_password", "");
         }
     }
 
@@ -102,17 +117,22 @@ public class SchoolNetActivity extends SherlockActivity {
         ab.setDisplayShowHomeEnabled(false);
         ab.setTitle("校园网连接");
         hintTv = (TextView) this.findViewById(R.id.hint);
-//        reconnectBtn = (Button) this.findViewById(R.id.connect);
-//        reconnectBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                connect();
-//            }
-//        });
+        connect = (Button)this.findViewById(R.id.connect);
+        connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hintTv.setText("正在登录");
+                connectPost();
+                connect.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
-    private void connect() {
-//        reconnectBtn.setVisibility(View.GONE);
+    /**
+     * 扫描的校园网后,才执行该方法.
+     */
+    private void connectPost() {
+        setLoginWifiData();
         KJHttp kjh = new KJHttp();
         KJStringParams params = new KJStringParams();
         params.put("username", account);
@@ -132,29 +152,25 @@ public class SchoolNetActivity extends SherlockActivity {
                     connectFail();
                 }
             }
-
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
-                hintTv.setText("连接失败，请尝试重新连接");
-//                reconnectBtn.setVisibility(View.VISIBLE);
-                // hint text
+                hintTv.setText("连接校园网失败，请返回后重试");
             }
         });
     }
 
     private void connectSucessful() {
-        hintTv.setText("连接成功");
+        hintTv.setText("登录成功");
         hintTv.setTextColor(Color.RED);
         hintTv.setTextSize(28);
-        Toast.makeText(getApplicationContext(), "连接成功", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_LONG).show();
         MyPreferenceManager.commitString("SchoolWifiName", account);
         MyPreferenceManager.commitString("SchoolWifiPassWord", password);
-//        reconnectBtn.setVisibility(View.GONE);
     }
 
     private void connectFail() {
-        hintTv.setText("连接失败,请尝试更改默认登录");
-//        reconnectBtn.setVisibility(View.GONE);
+        hintTv.setText("登录失败,若您已经登录,请多次尝试重新登录.若密码错误,请更改默认登录");
+        connect.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -211,7 +227,7 @@ public class SchoolNetActivity extends SherlockActivity {
     // 登录对话框
     protected void showLoginDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("请先尝试登录教务系统,如若您改了校园网密码，请按右上角的“更改默认登录”按钮");
+        builder.setMessage("请先尝试登录教务系统,如若您改了校园网密码，请点击右上角的“更改默认登录”按钮");
         builder.setTitle("提示");
 
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -248,10 +264,9 @@ public class SchoolNetActivity extends SherlockActivity {
                 dialog.dismiss();
                 account = ((EditText) view.findViewById(R.id.username_edit)).getText().toString();
                 password = ((EditText) view.findViewById(R.id.password_edit)).getText().toString();
-                connect();
+                connectPost();
             }
         });
-
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
 
             @Override

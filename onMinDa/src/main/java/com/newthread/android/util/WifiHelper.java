@@ -41,8 +41,18 @@ public class WifiHelper {
         return wifiManager.getWifiState();
     }
 
+    public WifiInfo getConnectionInfo(){
+       return wifiManager.getConnectionInfo();
+    }
+
+    public boolean isWifiConnect() {
+        ConnectivityManager connManager = (ConnectivityManager)context.getSystemService(Service.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return mWifi.isConnected();
+    }
+
     /**
-     * 扫描wifi结果将在 wifireceiver中回调
+     * 扫描wifi结果可以在wifireceiver中回调
      */
     public void scanWifi() {
         wifiManager.startScan();
