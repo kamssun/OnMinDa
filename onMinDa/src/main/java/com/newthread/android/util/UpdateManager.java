@@ -1,6 +1,5 @@
 package com.newthread.android.util;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,11 +8,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -23,11 +17,6 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -39,7 +28,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -47,6 +35,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.newthread.android.R;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class UpdateManager {
 	// 下载中...
@@ -68,10 +58,10 @@ public class UpdateManager {
 	private TextView mUpdateRate;
 	// 更新进度条的对话框
 	private Dialog mDownloadDialog;
-	private int queryVersion = 0;	// 查询版本号 
+	private float queryVersion = 0;	// 查询版本号
 	
 	boolean queryResult = false;
-	public static String UPDATE_URL = "http://59.68.29.99:8080/versionCompare/apk/update_info.txt";
+	public static String UPDATE_URL = "http://210.42.151.54/RZMD/update_info.txt";
 	private String downloadURL;		// 应用下载地址
 	
 	/* 下载包安装路径 */  
@@ -84,7 +74,6 @@ public class UpdateManager {
 			// 下载中。。。
 			case DOWNLOAD:
 				// 更新进度条
-				System.out.println(progress);
 				mUpdateRate.setText(progress + "%");
 				mProgressBar.setProgress(progress);
 				break;
@@ -94,9 +83,9 @@ public class UpdateManager {
 				installApk();
 				break;
 			case 1000:
-				if (queryVersion > getVersionCode(mContext)) {
+                if (queryVersion > getVersionCode(mContext)) {
 					// 显示提示对话框
-					showNoticeDialog();
+                    showNoticeDialog();
 				} else {
 					 Toast.makeText(mContext, "无最新版本", Toast.LENGTH_SHORT).show();
 				}
@@ -192,13 +181,13 @@ public class UpdateManager {
 	 * @param context
 	 * @return
 	 */
-	private int getVersionCode(Context context) {
-		int versionCode = 0;
+	private float getVersionCode(Context context) {
+        float versionCode =0;
 
 		// 获取软件版本号，对应AndroidManifest.xml下android:versionCode
 		try {
-			versionCode = context.getPackageManager().getPackageInfo("com.example.appupdate", 0).versionCode;
-		} catch (NameNotFoundException e) {
+            versionCode = Float.parseFloat(context.getPackageManager().getPackageInfo("com.newthread.android", 0).versionName);
+        } catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
 		return versionCode;
@@ -221,8 +210,6 @@ public class UpdateManager {
 					conn.connect();
 					// 获取文件大小
 					int length = conn.getContentLength();
-					
-					System.out.println("*******length:  " + length);
 					// 创建输入流
 					InputStream is = conn.getInputStream();
 
@@ -287,11 +274,8 @@ public class UpdateManager {
 					if (response == HttpStatus.SC_OK) {
 						// 取得返回的数据
 						String result = EntityUtils.toString(httpResponse.getEntity());
-						Log.v("resultAgnecy", result);
-						
 						parse(result);
-						
-						mHandler.sendEmptyMessage(1000);
+
 					} else {
 						System.out.println(httpResponse.getStatusLine().getStatusCode() + "");
 					}
@@ -304,54 +288,16 @@ public class UpdateManager {
 	
 	// 解析
 	private void parse(String result) {
-		try {
-			//创建DocumentBuilderFactory，该对象将创建DocumentBuilder。  
-	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
-	        //创建DocumentBuilder，DocumentBuilder将实际进行解析以创建Document对象  
-	        DocumentBuilder builder;
-			builder = factory.newDocumentBuilder();
-			
-			// 解析该文件以创建Document对象  
-	        Document document = builder.parse(new ByteArrayInputStream(result.getBytes()));
-	        // 获取XML文件根节点   
-	        Element root = document.getDocumentElement();  
-	        // 获得所有子节点  
-	        NodeList childNodes = root.getChildNodes();  
-	        for(int i = 0; i < childNodes.getLength(); i++) {  
-	            Node childNode = (Node) childNodes.item(i);  
-	            if(childNode.getNodeType() == Node.ELEMENT_NODE) {  
-	                Element childElement = (Element) childNode;  
-	                //版本号   
-	                if("version".equals(childElement.getNodeName())) {
-	                	System.out.println("**version**:  " + childElement.getFirstChild().getNodeValue());
-	                	
-	                	queryVersion = Integer.parseInt(childElement.getFirstChild().getNodeValue());
-	                	System.out.println("**version**:  " + queryVersion);
-//			                    hashMap.put("version", childElement.getFirstChild().getNodeValue());  
-	                //软件名称   
-	                } else if("name".equals(childElement.getNodeName())) {  
-//			                	System.out.println("**version**:  " + childElement.getFirstChild().getNodeValue());
-//			                    hashMap.put("name", childElement.getFirstChild().getNodeValue());  
-	                //下载地址  
-	                } else if("url".equals(childElement.getNodeName())) {  
-	                	downloadURL = childElement.getFirstChild().getNodeValue();
-//			                    hashMap.put("url", childElement.getFirstChild().getNodeValue());  
-	                }  
-	            }  
-	        }  
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+      Document doc =Jsoup.parse(result);
+        queryVersion = Float.parseFloat(doc.getElementsByTag("version").text());
+        downloadURL = doc.getElementsByTag("url").text();
+        mHandler.sendEmptyMessage(1000);
 	}
 	
 	/**
 	 * 安装APK文件
 	 */
 	private void installApk() {
-		System.out.println("*********installApk");
-		
 		File apkfile = new File(saveFileName);
 		if (!apkfile.exists()) {
 			return;
