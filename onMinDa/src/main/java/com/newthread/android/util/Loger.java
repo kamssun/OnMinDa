@@ -9,10 +9,10 @@ import android.util.Log;
 public  class Loger {
 	private String tag = "0000";
 	private static Loger loger =null;
-	
+
 	public static int logLevel = Log.VERBOSE;
 	public static boolean isDebug = true;
-	
+
 	public static void V(Object object){
 		if(loger==null){
 			loger = new Loger();
@@ -25,15 +25,15 @@ public  class Loger {
 		}
 		loger.v(mTag,object);
 	}
-	
+
 	private String getFunctionName() {
         StackTraceElement[] sts = Thread.currentThread().getStackTrace();
-        
+
         if (sts == null) {
             return null;
         }
-        
-        
+
+
         for (StackTraceElement st:sts) {
         	/*
         	 * 过滤掉堆栈方
@@ -56,39 +56,39 @@ public  class Loger {
 
             return "["+"ThreadId"+Thread.currentThread().getId()+": "+st.getFileName()+":"+st.getLineNumber()+"]";
         }
-        
+
         return null;
 	}
 
 	public void info(Object str) {
-	    if (logLevel <= Log.INFO) {	        
+	    if (logLevel <= Log.INFO) {
 	        String name = getFunctionName();
 	        String ls=(name==null?str.toString():(name+" - "+str));
 	        Log.i(tag, ls);
 	    }
 	}
-	
+
 	public void i(Object str) {
 		if (isDebug) {
 			info(str);
 		}
 	}
-	
+
 	public void verbose(String mTag,Object str) {
         if (logLevel <= Log.VERBOSE) {
             String name = getFunctionName();
             String ls=(name==null?str.toString():(name+" - "+str));
             if(mTag==null)
-            Log.v(tag, ls);    
+            Log.v(tag, ls);
         }
 	}
-	
+
 	public void v(String mTag,Object str) {
 		if (isDebug) {
 			verbose(mTag,str);
 		}
     }
-	
+
 	public void warn(Object str) {
 	    if (logLevel <= Log.WARN) {
             String name = getFunctionName();
@@ -96,21 +96,21 @@ public  class Loger {
             Log.w(tag, ls);
 	    }
 	}
-	
+
 	public void w(Object str) {
 		if (isDebug) {
 			warn(str);
 		}
     }
-	
+
 	public void error(Object str) {
-        if (logLevel <= Log.ERROR) {            
+        if (logLevel <= Log.ERROR) {
             String name = getFunctionName();
             String ls=(name==null?str.toString():(name+" - "+str));
             Log.e(tag, ls);
         }
 	}
-	
+
 	public void error(Exception ex) {
 	    if (logLevel <= Log.ERROR) {
 	        StringBuffer sb = new StringBuffer();
@@ -122,7 +122,7 @@ public  class Loger {
             } else {
                 sb.append(ex+"\r\n");
             }
-	        
+
 	        if (sts != null && sts.length > 0) {
 	            for (StackTraceElement st:sts) {
 	                if (st != null) {
@@ -130,11 +130,11 @@ public  class Loger {
 	                }
 	            }
 	        }
-	        
+
 	        Log.e(tag, sb.toString());
 	    }
 	}
-	
+
     public void e(Object str) {
     	if (isDebug) {
     		error(str);
@@ -146,7 +146,7 @@ public  class Loger {
     		error(ex);
     	}
     }
-	
+
 	public void debug(Object str) {
         if (logLevel <= Log.DEBUG) {
             String name = getFunctionName();
@@ -154,7 +154,7 @@ public  class Loger {
             Log.d(tag, ls);
         }
 	}
-	
+
 	public void d(Object str) {
 		if (isDebug) {
 			debug(str);

@@ -242,7 +242,6 @@ public class CourseChartLoginActivity extends SherlockActivity {
 					Log.v("conent(", "false");
 				}
 
-				Logger.i("loginResult", " " + loginResult);
 				handler.sendEmptyMessage(loginResult);
 			}
 
@@ -309,8 +308,6 @@ public class CourseChartLoginActivity extends SherlockActivity {
 				if (item.length() > 4 && item.split(" ").length >= 4) {
 					String leftItem = item.substring(item.indexOf("[") + 1,
 							item.length());
-					Logger.i("      left_body:", item.substring(
-							item.indexOf("[") + 1, item.length()));
 					String[] items = leftItem.split(" ");
 
 					// 有课
@@ -318,7 +315,6 @@ public class CourseChartLoginActivity extends SherlockActivity {
 
 					// 课程名
 					if (item.contains("[")) {
-						Logger.i("		position", "");
 						singleCourse.setCourseName(item.substring(0,
 								item.indexOf("[")));
 
@@ -459,29 +455,23 @@ public class CourseChartLoginActivity extends SherlockActivity {
 						+ "");
 			}
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			loginResult = HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			loginResult = HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 			loginResult = HandleMessage.QUERY_ERROR;
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
 			loginResult = HandleMessage.QUERY_ERROR;
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 		} catch (IOException e) {
 			e.printStackTrace();
 			loginResult = HandleMessage.DELAYED;
-			Logger.i("IOException", "QUERY_ERROR");
 
 		} catch (Exception e) {
 			loginResult = HandleMessage.QUERY_ERROR;
-			Logger.i("Exception-connectPost", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 		}
 		return false;
@@ -512,25 +502,20 @@ public class CourseChartLoginActivity extends SherlockActivity {
 						+ response.getStatusLine().getStatusCode());
 			}
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			loginResult = HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			loginResult = HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 			loginResult = HandleMessage.QUERY_ERROR;
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
 			loginResult = HandleMessage.QUERY_ERROR;
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 		} catch (IOException e) {
 			e.printStackTrace();
 			loginResult = HandleMessage.QUERY_ERROR;
-			Logger.i("IOException", "QUERY_ERROR");
 			// } catch (Exception e) {
 			// loginResult = HandleMessage.QUERY_ERROR;
 			// Logger.i("Exception——connect", "QUERY_ERROR: " + e.toString());

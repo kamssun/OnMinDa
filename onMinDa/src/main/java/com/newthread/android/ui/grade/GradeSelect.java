@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -26,9 +25,7 @@ import com.newthread.android.bean.GradeQueryVo;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.service.GradeQuery;
 import com.newthread.android.ui.coursechart.CourseChartLoginActivity;
-import com.newthread.android.ui.library.LibraryLoginActivity;
 import com.newthread.android.util.CroutonUtil;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.MyPreferenceManager;
 import com.newthread.android.util.StringUtils;
 
@@ -253,8 +250,6 @@ public class GradeSelect extends SherlockFragmentActivity implements OnClickList
 						
 						String [] semesters = getResources().getStringArray(R.array.grade_semesters);
 						semesterText.setText(semesters[whichButton]);
-						
-						Logger.i("*************", "whichButton " + whichButton);
 						if (whichButton == 1) {
 							vo.setSemester("1");
 						} else if (whichButton == 2) {

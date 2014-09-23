@@ -1,7 +1,6 @@
 package com.newthread.android.ui.exam;
 
 import com.newthread.android.bean.ExamArrangeInfo;
-import com.newthread.android.util.Loger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

@@ -173,6 +173,7 @@ public class TimeServiceImpl implements ITimeService {
             return pi;
         } else if (timeTask.getType().equals("broadcast")) {
             _intent = new Intent(TimeTaskMeta.valueOf(timeTask.getTaskName()).getAction());
+            _intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             _intent.putExtras(bundle);
             PendingIntent pi = PendingIntent.getBroadcast(context, i, _intent, 0);
             return pi;
@@ -200,9 +201,9 @@ public class TimeServiceImpl implements ITimeService {
         List<TimeTask> timeTasks = dbManger.query();
         PendingIntent pi = createRigistPIntent(timeTask, timeTasks.size(),bundle);
         if (timeTask.getRepetTimeMills() == null) {
-            alarmMgr.set(AlarmManager.RTC_WAKEUP, Long.valueOf(getMills(timeTask)), pi);
+            alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, Long.valueOf(getMills(timeTask)), pi);
         } else {
-            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, Long.valueOf(getMills(timeTask)), Long.valueOf(timeTask.getRepetTimeMills()), pi);
+            alarmMgr.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, Long.valueOf(getMills(timeTask)), Long.valueOf(timeTask.getRepetTimeMills()), pi);
         }
         addTimeTaskInDB(timeTask);
     }

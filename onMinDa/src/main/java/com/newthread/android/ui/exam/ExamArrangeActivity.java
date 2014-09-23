@@ -34,7 +34,7 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
     private static final String URL1 = "http://ids.scuec.edu.cn/amserver/UI/Login?goto=http://my.scuec.edu.cn/index.portal"; // 个人图书馆URL
     private static final String URL2 = "http://ssfw.scuec.edu.cn/ssfw/j_spring_ids_security_check"; // URL
     private static final String URL3 = "http://ssfw.scuec.edu.cn/ssfw/xsks/kcxx.do"; // 考试安排查询网址
-
+    private static final String current_semeser="2014-2015-1";
 
     private KJHttp kjh;
     private KJDB db;
@@ -81,7 +81,7 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
                     @Override
                     public void onSuccess(String json) {
                         KJStringParams params = new KJStringParams();
-                        params.put("xnxqdm", "2013-2014-2");
+                        params.put("xnxqdm", current_semeser);
                         kjh.post(URL3, params, new StringCallBack() {
                             @Override
                             public void onSuccess(String html) {
@@ -171,8 +171,27 @@ public class ExamArrangeActivity extends SherlockFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        menu.add("完成").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        menu.add("刷新").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return true;
+    }
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+                break;
+
+        }
+        if (item.getTitle().equals("刷新")) {
+            List<ExamArrangeInfo> examArrangeInfos = db.findAll(ExamArrangeInfo.class);
+            for (ExamArrangeInfo examArrangeInfo : examArrangeInfos){
+                db.delete(examArrangeInfo);
+            }
+            getExamFromUrl();
+        }
+        return super.onMenuItemSelected(featureId, item);
+
     }
 
     @Override

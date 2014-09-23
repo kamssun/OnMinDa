@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.newthread.android.R;
 import com.newthread.android.R.color;
 import com.newthread.android.bean.SingleCourseInfo;
-import com.newthread.android.util.Logger;
 
 public class MainCourseListAdapter extends BaseAdapter {
 	private ArrayList<SingleCourseInfo> list;
@@ -41,8 +40,6 @@ public class MainCourseListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Logger.i("****", "getView" + position
-				+ list.get(position).getCourseName());
 		ViewHolder holder = null;
 		SingleCourseInfo info = list.get(position);
 		if (convertView == null) {

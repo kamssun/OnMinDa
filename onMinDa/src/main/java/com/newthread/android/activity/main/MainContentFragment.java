@@ -19,14 +19,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.newthread.android.R;
 import com.newthread.android.adapter.MainCourseListAdapter;
 import com.newthread.android.bean.EverydayCourse;
 import com.newthread.android.bean.SingleCourseInfo;
 import com.newthread.android.ui.coursechart.CourseDetailActivity;
-import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.AndroidUtil;
-import com.newthread.android.util.TimeUtil;
+import com.newthread.android.util.*;
 import com.newthread.android.view.MyScrollView;
 import com.slidingmenu.lib.SlidingMenu;
 
@@ -62,7 +61,7 @@ public class MainContentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_content, container, false);
-        this.con=getActivity().getApplicationContext();
+        this.con = getActivity().getApplicationContext();
         initData();
         initView(view);
         return view;
@@ -97,21 +96,24 @@ public class MainContentFragment extends Fragment {
         weekCourse = AndroidDB.getCourse(getActivity().getApplicationContext());
     }
 
-    private int changephoto = 1;
+    private int favoritePhotoIndex ;
 
     // 初始化界面
     private void initView(View view) {
         titlebarView = view.findViewById(R.id.title_bar_bg_view);
-//		relayout.setBackgroundResource(src[(int) Math.random() * src.length]);
-
-//		relayout.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				relayout.setBackgroundResource(src[changephoto % src.length]);
-//				changephoto++;
-//			}
-//		});
+        MyPreferenceManager.init(getActivity().getApplicationContext());
+        favoritePhotoIndex = MyPreferenceManager.getInt("favoritePhotoIndex", 4);
+        final KenBurnsView kenBurnsView = (KenBurnsView) view.findViewById(R.id.main_content_bg);
+        kenBurnsView.setImageResource(src[favoritePhotoIndex]);
+        kenBurnsView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favoritePhotoIndex++;
+                favoritePhotoIndex= favoritePhotoIndex % src.length;
+                kenBurnsView.setImageResource(src[favoritePhotoIndex]);
+                MyPreferenceManager.commitInt("favoritePhotoIndex", favoritePhotoIndex);
+            }
+        });
         leftButton = view.findViewById(R.id.logo_and_title);
         leftButton.setOnClickListener(new OnClickListener() {
 
@@ -176,11 +178,11 @@ public class MainContentFragment extends Fragment {
                 MainContentFragment.this.startActivity(_intent);
             }
         });
-		week_of_semester = (TextView) view.findViewById(R.id.week_of_semester);
+        week_of_semester = (TextView) view.findViewById(R.id.week_of_semester);
 
         int week = TimeUtil.getWeekOfSemester();
 
-		week_of_semester.setText("第" + week + "周");
+        week_of_semester.setText("第" + week + "周");
         YoYo.with(Techniques.BounceInRight)
                 .duration(2000)
                 .playOn(week_of_semester);

@@ -1,7 +1,6 @@
 package com.newthread.android.ui.library;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -10,7 +9,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.newthread.android.R;
 import com.newthread.android.bean.PersonalInfo;
 import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.Logger;
 
 public class PersonalInfoActivity extends SherlockActivity {
 	private TextView name, sId, barId, borrowNum;
@@ -27,8 +25,6 @@ public class PersonalInfoActivity extends SherlockActivity {
 
 	private void initData() {
 		info = AndroidDB.queryPersonalInfo(getApplicationContext());
-		
-		Logger.i("~~~~~~~~~~~info", info.toString());
 	}
 
 	private void initView() {

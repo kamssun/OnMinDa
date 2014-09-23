@@ -4,30 +4,33 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">人在民大</string>
-	<string name="service_start">service_start</string>
-	
+    <string name="service_start">service_start</string>
+
     <string name="library_radio_label_1">馆藏图书</string>
-	<string name="library_radio_label_2">独秀电子书</string>
-	<string name="library_radio_label_3">期刊、论文</string>
-	<string name="library_radio_label_4">题名</string>
-	<string name="library_radio_label_5">作者</string>
-	<string name="livrary_radio_type_1">文献类型</string>
-	<string name="livrary_radio_type_2">检索类型</string>
-	<string name="library_search_hint">请输入搜索关键字</string>
-	<string name="library_login_cb_label">记住密码</string>
-	
-	<string name="net_error">网络错误，请检查网络连接</string>
-	
-	<string name="prompt_no_content">请输入关键字进行查询</string>
-	
-	<string name="year_select">学年选择</string>
-	<string name="semester_select">学期选择</string>
-	
-	<string name="about_description_1">由于本应用制作时间短，过于仓促，难免有很多不足之处，不过后面我们会及时修复、陆续发布新的功能，希望亲们能够多担待、多提宝贵意见。</string>
-	<string name="about_description_2">from_NewThread·Android</string>
-	<string name="about_from_1">Copyright © 2013 New Thread Team.</string>
-	<string name="about_from_2">All rights reserved.</string>
-	
-	<string name="account_about">提示:　图书馆与教务系统账号需分别登录，以使用更多功能</string>
+    <string name="library_radio_label_2">独秀电子书</string>
+    <string name="library_radio_label_3">期刊、论文</string>
+    <string name="library_radio_label_4">题名</string>
+    <string name="library_radio_label_5">作者</string>
+    <string name="livrary_radio_type_1">文献类型</string>
+    <string name="livrary_radio_type_2">检索类型</string>
+    <string name="library_search_hint">请输入搜索关键字</string>
+    <string name="library_login_cb_label">记住密码</string>
+
+    <string name="net_error">网络错误，请检查网络连接</string>
+
+    <string name="prompt_no_content">请输入关键字进行查询</string>
+
+    <string name="year_select">学年选择</string>
+    <string name="semester_select">学期选择</string>
+
+    <string name="about_description_1">由于本应用制作时间短，过于仓促，难免有很多不足之处，不过后面我们会及时修复、陆续发布新的功能，希望亲们能够多担待、多提宝贵意见。</string>
+    <string name="about_description_2">
+        <a href="http://www.google.com">From Newthread Android Team</a>
+    </string>
+
+    <string name="about_from_1">Copyright © 2013 New Thread Team.</string>
+    <string name="about_from_2">All rights reserved.</string>
+
+    <string name="account_about">提示:　图书馆与教务系统账号需分别登录，以使用更多功能</string>
     <string name="exit_hint">再按一次退出人在民大</string>
 </resources>

@@ -16,7 +16,6 @@ import android.widget.ListView;
 import com.newthread.android.bean.NewsContentVo;
 import com.newthread.android.bean.NewsListItem;
 import com.newthread.android.global.HandleMessage;
-import com.newthread.android.util.Logger;
 
 public class NewsListQuery {
     private Document doc;
@@ -67,32 +66,25 @@ public class NewsListQuery {
 		///////////////////////////////////////////////////////////////////
 		// 将获取新闻列表字符串的过程放到Activity中， 并加上相应的异常处理 /////////////////////
 		try {
-			Logger.i("URL", "" + url);
 			doc = Jsoup.parse(new URL(url), 30 * 1000);
 			
 //			System.out.print(doc.toString());
 		}catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (IOException e) {
 			e.printStackTrace();
-			Logger.i("IOException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (Exception e) {
-			Logger.i("Exception", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 			return HandleMessage.QUERY_ERROR;
 		}
@@ -138,13 +130,10 @@ public class NewsListQuery {
 				list.add(item);
 			}
 			
-			Logger.i("Demo_list", "" + list.get(0).getTitle());
-			Logger.i("parseNewsList: ", "list.size: "+ list.size());
 			//////////////////////////////////////////////////////////////////////////
 			//////// 下一页链接为   http://news.scuec.edu.cn/xww/?class-focusNews-page-2。。。。
 		} catch (Exception e) {
 			e.printStackTrace();
-			Logger.i("NewsListQuery__parseNewsList_Exception", "" + e.toString());
 			return HandleMessage.QUERY_ERROR;
 		}
 		

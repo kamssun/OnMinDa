@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import android.content.Context;
 import com.newthread.android.bean.LostListItem;
 import com.newthread.android.global.HandleMessage;
-import com.newthread.android.util.Logger;
 
 public class LostMainQuery {
 	private List<LostListItem> list;
@@ -34,8 +33,6 @@ public class LostMainQuery {
 
 			if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				String str = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
-				
-				Logger.i("result", "" + str);
 				if (str != null) {
 					return parseData(str);
 				}
@@ -43,11 +40,9 @@ public class LostMainQuery {
 				return HandleMessage.QUERY_ERROR;
 			}
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {

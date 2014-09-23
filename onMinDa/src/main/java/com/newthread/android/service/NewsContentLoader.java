@@ -15,7 +15,6 @@ import android.content.Context;
 
 import com.newthread.android.bean.NewsContentVo;
 import com.newthread.android.global.HandleMessage;
-import com.newthread.android.util.Logger;
 
 /**
  * 新闻内容加载,同时，实现图片与文本内容的缓存
@@ -45,27 +44,21 @@ public class NewsContentLoader {
 			doc = Jsoup.parse(new URL(url), 20 * 1000);
 //			System.out.print(doc.toString());
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			return HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (IOException e) {
 			e.printStackTrace();
-			Logger.i("IOException", "QUERY_ERROR");
 			return HandleMessage.QUERY_ERROR;
 		} catch (Exception e) {
-			Logger.i("Exception", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 			return HandleMessage.QUERY_ERROR;
 		}
@@ -86,7 +79,6 @@ public class NewsContentLoader {
 				if (es1.get(i).text() == null || es1.get(i).text().equals("")) {
 //					Log.i("tag", " + es1.get(i).text() == null, " + i + ", " + es1.get(i).getElementsByTag("IMG").first().attr("src"));
 					imageUrl = es1.get(i).getElementsByTag("IMG").first().attr("src");
-					Logger.i("get_url", imageUrl);
 					i++;
 				} else {
 					sb.append("      " + es1.get(i).text() + "\n\n");
@@ -101,10 +93,7 @@ public class NewsContentLoader {
 
 			// 来源及编辑
 			vo.setSource(es1.get(es1.size() - 2).text().substring(1, es1.get(es1.size() - 2).text().length() - 1));
-			Logger.i("NewsContentLoader", "Source: "+ es1.get(es1.size() - 2).text().substring(1, es1.get(es1.size() - 2).text().length() - 1));
-
 		} catch (Exception e) {
-			Logger.i("NewsContentLoader" + "_loadContent", e.toString());
 			return HandleMessage.QUERY_ERROR;
 		}
 		

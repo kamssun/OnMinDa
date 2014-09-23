@@ -16,7 +16,6 @@ import com.newthread.android.activity.main.OnCampusActivity;
 import com.newthread.android.bean.SingleCourseInfo;
 import com.newthread.android.clock.TimeManager;
 import com.newthread.android.clock.TimeTask;
-import com.newthread.android.util.Loger;
 import com.newthread.android.util.TimeUtil;
 
 import java.io.File;
@@ -88,11 +87,11 @@ public class CourseRemindManger implements IRemindService<SingleCourseInfo> {
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         notification.defaults |= Notification.DEFAULT_VIBRATE;
         notification.defaults |= Notification.DEFAULT_LIGHTS;
-        Intent intent = new Intent(context.getApplicationContext(), OnCampusActivity.class);
+        Intent intent = new Intent(context, OnCampusActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         notification.contentIntent = pendingIntent;
-        notification.setLatestEventInfo(context.getApplicationContext(), "人在民大", singleCourseInfo.getCourseName(), pendingIntent);
+        notification.setLatestEventInfo(context, "人在民大", singleCourseInfo.getCourseName(), pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
         vibrate();

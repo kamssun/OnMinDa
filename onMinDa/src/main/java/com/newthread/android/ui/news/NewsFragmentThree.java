@@ -27,7 +27,6 @@ import com.newthread.android.bean.NewsListItem;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.service.NewsListQuery;
 import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.MyAnimation;
 import com.newthread.android.util.StringUtils;
 
@@ -45,7 +44,9 @@ public class NewsFragmentThree extends Fragment {
 	private boolean isRefreshSuccess = false;  // 本次刷新是否成功	
 	private int visibleLastIndex = 0;	// 最后的可视项索引
 	public static final int PER_PAGE_NUM = 12;	// 每页item数量
-	
+    public PullToRefreshListView getListView(){
+        return listView ;
+    }
 	public NewsFragmentThree() {
 	}
 	
@@ -197,11 +198,9 @@ public class NewsFragmentThree extends Fragment {
 			case HandleMessage.QUERY_ERROR:
 				// 失败
 				isLoading = false;
-				Logger.i("NewsFragmentThree__handleMessage", "QUERY_ERROR");
 				break;
 			case HandleMessage.NO_CONTENT:
 				isLoading = false;
-				Logger.i("NewsFragmentThree__handleMessage", "NO_CONTENT");
 				break;
 			default:
 				break;
@@ -215,7 +214,6 @@ public class NewsFragmentThree extends Fragment {
 		
 		// 下页URL
 		final int nextPageNum = (list.size() / 12) + 1;
-		Logger.i("loadMore", "page.size " + nextPageNum);
 		new Thread(new Runnable() {
 
 			@Override
@@ -249,7 +247,6 @@ public class NewsFragmentThree extends Fragment {
 //			msg.what = result;
 //			handler.sendMessage(msg);
 //			handler.sendEmptyMessage(result);
-			Logger.i("NewsFragmentThree_QueryThread", "result: "  + result);
 		}
 		
 	}

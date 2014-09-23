@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.newthread.android.R;
 import com.newthread.android.bean.LibraryDetailBookInfo;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.StringUtils;
 
 public class DetailFragmentTwo extends Fragment {
@@ -37,8 +36,6 @@ public class DetailFragmentTwo extends Fragment {
 					Uri uri = Uri.parse(bookInfo.getDouBanHref());   
 			        Intent  _intent = new Intent(Intent.ACTION_VIEW,uri);    
 			        startActivity(_intent);    
-			        
-					Logger.i("href: ", bookInfo.getDouBanHref());
 				}
 				
 			});

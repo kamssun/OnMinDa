@@ -44,7 +44,6 @@ import com.newthread.android.bean.LibraryCurrentBorrow;
 import com.newthread.android.bean.PersonalInfo;
 import com.newthread.android.global.HandleMessage;
 import com.newthread.android.util.AndroidDB;
-import com.newthread.android.util.Logger;
 import com.newthread.android.util.MyPreferenceManager;
 import com.newthread.android.util.StringUtils;
 
@@ -173,7 +172,6 @@ public class LibraryLoginActivity extends Activity {
 					LibraryLoginActivity.this.finish();
 				break;
 				case HandleMessage.QUERY_ERROR:
-					Logger.i("library_login", "ERROR------");
 					// 查询失败
 					Toast.makeText(getApplicationContext(), R.string.net_error, Toast.LENGTH_SHORT).show();
 				break;
@@ -199,7 +197,6 @@ public class LibraryLoginActivity extends Activity {
 			@Override
 			public void run() {
 				connectPost(perLibraryUrl);
-				Logger.i("result", " " + result);
 				handler.sendEmptyMessage(result);
 			}
 			
@@ -215,10 +212,7 @@ public class LibraryLoginActivity extends Activity {
 		params.add(new BasicNameValuePair("number", account)); // 添加要传递的参数
 		params.add(new BasicNameValuePair("passwd", password));
 		params.add(new BasicNameValuePair("select", accountType));
-		Logger.i("number********", account);
-		Logger.i("passwd********", password);
-		Logger.i("type********", accountType);
-		
+
 		try {
 			HttpEntity entity = new UrlEncodedFormEntity(params, HTTP.UTF_8); // 设置字符集
 			httpPost.setEntity(entity); // 设置参数实体
@@ -238,28 +232,22 @@ public class LibraryLoginActivity extends Activity {
 				System.out.println(httpResp.getStatusLine().getStatusCode() + "");
 			}
 		} catch (MalformedURLException e) {
-			Logger.i("MalformedURLException", "MalformedURLException");
 			e.printStackTrace();
 			result = HandleMessage.NO_CONTENT;
 		} catch (IllegalArgumentException e) {
-			Logger.i("IllegalArgumentException", "IllegalArgumentException");
 			e.printStackTrace();
 			result = HandleMessage.NO_CONTENT;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("ClientProtocolException", "QUERY_ERROR");
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("SocketTimeoutException", "QUERY_ERROR");
 		} catch (IOException e) {
 			e.printStackTrace();
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("IOException", "QUERY_ERROR");
 		} catch (Exception e) {
 			result = HandleMessage.QUERY_ERROR;
-			Logger.i("Exception", "QUERY_ERROR: " + e.toString());
 			e.printStackTrace();
 		}
 	}
@@ -332,34 +320,25 @@ public class LibraryLoginActivity extends Activity {
 					item.setOverTime(es3.get(i).select("[width=13%]").get(1).text());
 					
 					currentBorrowList.add(item);
-					System.out.println("title: " + es3.get(i).select("[width=35%]").text());
-					System.out.println("canRenew: " + es3.get(i).select("[width=6%]").text());
-					System.out.println("overTime: " + es3.get(i).select("[width=13%]").get(1).text());
 				}
 				
 			}  catch (MalformedURLException e) {
-				Logger.i("MalformedURLException", "MalformedURLException");
 				e.printStackTrace();
 				result = HandleMessage.NO_CONTENT;
 			} catch (IllegalArgumentException e) {
-				Logger.i("IllegalArgumentException", "IllegalArgumentException");
 				e.printStackTrace();
 				result = HandleMessage.NO_CONTENT;
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
 				result = HandleMessage.QUERY_ERROR;
-				Logger.i("ClientProtocolException", "QUERY_ERROR");
 			} catch (SocketTimeoutException e) {
 				e.printStackTrace();
 				result = HandleMessage.QUERY_ERROR;
-				Logger.i("SocketTimeoutException", "QUERY_ERROR");
 			} catch (IOException e) {
 				e.printStackTrace();
 				result = HandleMessage.QUERY_ERROR;
-				Logger.i("IOException", "QUERY_ERROR");
 			} catch (Exception e) {
 				result = HandleMessage.NO_CONTENT;
-				Logger.i("Exception", "QUERY_ERROR: " + e.toString());
 				e.printStackTrace();
 			}
 		} else {
