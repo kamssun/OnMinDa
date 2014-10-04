@@ -11,12 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.flaviofaria.kenburnsview.KenBurnsView;
@@ -41,8 +37,8 @@ public class MainContentFragment extends Fragment {
     private MainCourseListAdapter todayAdapter, tomorrowAdapter;
     private ArrayList<SingleCourseInfo> todayShowList = new ArrayList<SingleCourseInfo>(),
             tomorrowShowList = new ArrayList<SingleCourseInfo>();
-    private ListView todayCourseList;
-    private ListView tomorrowCourseList;
+    private GridView todayCourseList;
+    private GridView tomorrowCourseList;
     private LinearLayout todayView, tomorrowView;
     int src[] = new int[]{R.drawable.main_titlebar_bg, R.drawable.main_titlebar_bg_2,
             R.drawable.main_titlebar_bg_3, R.drawable.main_titlebar_bg_4,
@@ -96,7 +92,7 @@ public class MainContentFragment extends Fragment {
         weekCourse = AndroidDB.getCourse(getActivity().getApplicationContext());
     }
 
-    private int favoritePhotoIndex ;
+    private int favoritePhotoIndex;
 
     // 初始化界面
     private void initView(View view) {
@@ -109,7 +105,7 @@ public class MainContentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 favoritePhotoIndex++;
-                favoritePhotoIndex= favoritePhotoIndex % src.length;
+                favoritePhotoIndex = favoritePhotoIndex % src.length;
                 kenBurnsView.setImageResource(src[favoritePhotoIndex]);
                 MyPreferenceManager.commitInt("favoritePhotoIndex", favoritePhotoIndex);
             }
@@ -139,8 +135,8 @@ public class MainContentFragment extends Fragment {
         tomorrowNoCoursePrompt = (TextView) view
                 .findViewById(R.id.tomorrow_no_course);
 
-        todayCourseList = (ListView) view.findViewById(R.id.today_course_list);
-        tomorrowCourseList = (ListView) view
+        todayCourseList = (GridView) view.findViewById(R.id.today_course_list);
+        tomorrowCourseList = (GridView) view
                 .findViewById(R.id.tomorrow_course_list);
 
         todayAdapter = new MainCourseListAdapter(con, todayShowList);
@@ -212,14 +208,21 @@ public class MainContentFragment extends Fragment {
 
         MyScrollView scroll_view = (MyScrollView) view.findViewById(R.id.scroll_view);
         scroll_view.setOnScrollListener(onScrollListener);
+//        scroll_view.scrollTo(0,0);
     }
 
     private void setListViewHight() {
         // 今天课程列表高度
         LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) todayView
                 .getLayoutParams(); // 取控件mGrid当前的布局参数
-        int height = AndroidUtil.dp2px(con, 75 * todayShowList.size());
-        if (todayShowList.size() == 0) {
+        int size = todayShowList.size();
+        if (size % 2 == 1) {
+            size = size / 2 + 1;
+        } else {
+            size = size / 2;
+        }
+        int height = AndroidUtil.dp2px(con, 85 * size);
+        if (size == 0) {
             height = 140;
         }
         linearParams.height = height;
@@ -229,8 +232,14 @@ public class MainContentFragment extends Fragment {
 
         LinearLayout.LayoutParams linearParams2 = (LinearLayout.LayoutParams) tomorrowView
                 .getLayoutParams(); // 取控件mGrid当前的布局参数
-        int height2 = AndroidUtil.dp2px(con, 75 * tomorrowShowList.size());
-        if (tomorrowShowList.size() == 0) {
+        size = tomorrowShowList.size();
+        if (size % 2 == 1) {
+            size = size / 2 + 1;
+        } else {
+            size = size / 2;
+        }
+        int height2 = AndroidUtil.dp2px(con, 85 * size);
+        if (size == 0) {
             height2 = 140;
         }
         linearParams2.height = height2;
@@ -279,9 +288,37 @@ public class MainContentFragment extends Fragment {
         for (int i = 0; i < tomorrowList.size(); i++) {
             // Log.v("000000", i + "   " + tomorrowList.get(i).getCourseName()
             // + isProceed(tomorrowList.get(i)));
-
-            if (tomorrowList.get(i).isHaveCourse()) {
-                if (!isProceed(tomorrowList.get(i))) {
+            SingleCourseInfo courseInfoT = tomorrowList.get(i);
+            if (courseInfoT.isHaveCourse()) {
+                String[] items = courseInfoT.getCourseName().split("/");
+                if (items.length == 2) {
+                    //如果是单双周轮上课程
+                    int index = -1;
+                    if (TimeUtil.getWeekOfSemester() % 2 == 1) {
+                        //单周
+                        if(items[0].contains("单")) {
+                            index = 0;
+                        }else {
+                            index = 1;
+                        }
+                    }else {
+                        //双周
+                        if(items[0].contains("双")) {
+                            index = 0;
+                        }else {
+                            index = 1;
+                        }
+                    }
+                    SingleCourseInfo sci = new SingleCourseInfo();
+                    sci.setClassromNum(courseInfoT.getClassromNum().split("/")[index].replace("\n", ""));
+                    sci.setCourseName(courseInfoT.getCourseName().split("/")[index].replace("\n", ""));
+                    sci.setHaveCourse(true);
+                    sci.setTeacherName(courseInfoT.getTeacherName().split("/")[index].replace("\n", ""));
+                    sci.setSustainTime(courseInfoT.getSustainTime().split("/")[index].replace("\n", ""));
+                    sci.setNumOfWeek(courseInfoT.getNumOfWeek());
+                    courseInfoT = sci;
+                }
+                if (!isProceed(courseInfoT)) {
                     SingleCourseInfo sci = new SingleCourseInfo();
                     sci.setClassromNum("");
                     sci.setCourseName("");
@@ -290,10 +327,10 @@ public class MainContentFragment extends Fragment {
                     sci.setSustainTime("");
                     tomorrowShowList.add(sci);
                 } else {
-                    tomorrowShowList.add(tomorrowList.get(i));
+                    tomorrowShowList.add(courseInfoT);
                 }
             } else {
-                tomorrowShowList.add(tomorrowList.get(i));
+                tomorrowShowList.add(courseInfoT);
             }
         }
     }

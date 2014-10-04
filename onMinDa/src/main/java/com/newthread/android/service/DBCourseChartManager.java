@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import com.newthread.android.bean.BookCollectItem;
 import com.newthread.android.bean.EverydayCourse;
 import com.newthread.android.bean.SingleCourseInfo;
@@ -12,6 +13,7 @@ import com.newthread.android.util.DBHelper;
 import com.newthread.android.util.TimeUtil;
 
 public class DBCourseChartManager {
+    private static final String TAG = "DBCourseChartManager";
 	private DBHelper helper;
 	private SQLiteDatabase db;
 	
@@ -73,7 +75,7 @@ public class DBCourseChartManager {
 			for (int i = 0; i < 7; i++) {
 				EverydayCourse everydayCourse = new EverydayCourse();
 				
-				for (int j = 0; j < 5; j++) {
+				for (int j = 0; j < 11; j++) {
 					boolean ok = c.moveToNext();
 					if (ok) {
 						SingleCourseInfo item = new SingleCourseInfo();
@@ -93,6 +95,7 @@ public class DBCourseChartManager {
 						everydayCourse.getDayOfWeek().add(item);
 					}
 				}
+//                Log.v(TAG, everydayCourse.toString());
 				items.add(everydayCourse);
 			}
 		} catch (Exception e) {

@@ -57,16 +57,16 @@ public class MainCourseListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
+        holder.courseTime.setText("第" + (position + 1)  + "节");
 		if (info.isHaveCourse()) {
 			holder.courseName.setText(info.getCourseName());
 			holder.place.setText(info.getClassromNum());
-			holder.courseTime.setText(info.getNumOfDay());
 		} else {
 			holder.courseName.setText("无课");
 			holder.place.setText("");
-			int temp_int=(position+1)*2-1;
-			 String temp="第"+temp_int+"-"+(temp_int+1)+"节";
-			holder.courseTime.setText(temp);
+//			int temp_int=(position+1)*2-1;
+//			 String temp="第"+temp_int+"-"+(temp_int+1)+"节";
+//			holder.courseTime.setText(temp);
 		}
 		return convertView;
 		// SingleCourseInfo info = list.get(position);

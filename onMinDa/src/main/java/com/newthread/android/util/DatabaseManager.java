@@ -67,7 +67,7 @@ public class DatabaseManager<T> {
         ContentValues values = new ContentValues();
         for (int i = 0; i < size; i++) {
             try {
-                values.put(fieldsStr.get(i).toString(), String.valueOf(getMethods.get(i).invoke(obj, null)));
+                values.put(fieldsStr.get(i).toString(), String.valueOf(getMethods.get(i).invoke(obj, new Object[]{})));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -85,7 +85,7 @@ public class DatabaseManager<T> {
             ContentValues values = new ContentValues();
             for (int i = 0; i < size; i++) {
                 try {
-                    values.put(fieldsStr.get(i).toString(), String.valueOf(getMethods.get(i).invoke(obj, null).toString()));
+                    values.put(fieldsStr.get(i).toString(), String.valueOf(getMethods.get(i).invoke(obj, new Object[]{}).toString()));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
@@ -110,7 +110,7 @@ public class DatabaseManager<T> {
         for (int i = 0; i < size; i++) {
             Method method = getMethods.get(i);
             try {
-                String str = (String) getMethods.get(i).invoke(obj, null) + "";
+                String str = (String) getMethods.get(i).invoke(obj, new Object[]{}) + "";
                 if (str != null && !str.equals("")) {
                     whereClause = whereClause + fieldsStr.get(i) + "=? and ";
                     list.add(str);
@@ -202,7 +202,7 @@ public class DatabaseManager<T> {
             List<String> args = new ArrayList<String>();
             int size = fieldsStr.size();
             for (int i = 0; i < size; i++) {
-                String str = getMethods.get(i).invoke(obj, null) + "";
+                String str = getMethods.get(i).invoke(obj, new Object[]{}) + "";
                 if (str != null && !str.equals("")) {
                     whereClause = whereClause + fieldsStr.get(i) + "=? and ";
                     args.add(str);

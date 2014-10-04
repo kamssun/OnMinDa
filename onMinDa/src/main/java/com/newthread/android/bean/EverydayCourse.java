@@ -26,4 +26,11 @@ public class EverydayCourse implements Serializable {
 	public void setDayOfWeek(ArrayList<SingleCourseInfo> dayOfWeek) {
 		this.dayOfWeek = dayOfWeek;
 	}
+
+    @Override
+    public String toString() {
+        return "EverydayCourse{" +
+                "dayOfWeek=" + dayOfWeek +
+                '}';
+    }
 }

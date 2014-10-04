@@ -73,5 +73,18 @@ public class SingleCourseInfo implements Serializable {
 	public void setNumOfDay(String numOfDay) {
 		this.numOfDay = numOfDay;
 	}
-	
+
+    @Override
+    public String toString() {
+        return "SingleCourseInfo{" +
+                "id='" + id + '\'' +
+                ", isHaveCourse=" + isHaveCourse +
+                ", courseName='" + courseName + '\'' +
+                ", teacherName='" + teacherName + '\'' +
+                ", sustainTime='" + sustainTime + '\'' +
+                ", classromNum='" + classromNum + '\'' +
+                ", numOfDay='" + numOfDay + '\'' +
+                ", numOfWeek=" + numOfWeek +
+                '}';
+    }
 }

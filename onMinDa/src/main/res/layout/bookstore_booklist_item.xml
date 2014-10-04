@@ -1,77 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bookListItemLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/listitembg" >
+                android:id="@+id/bookListItemLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/listitembg">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="90dp"
-        android:paddingBottom="8dip"
-        android:paddingLeft="5dip"
-        android:paddingRight="5dip"
-        android:paddingTop="8dip" >
-
-        <ImageView
-            android:id="@+id/bookstore_booklist_item_cover"
-            android:layout_width="55dip"
-            android:layout_height="55dip"
-            android:layout_centerVertical="true"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:id="@+id/bookstore_booklist_item_name"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dip"
-            android:layout_toRightOf="@+id/bookstore_booklist_item_cover"
-            android:ellipsize="end"
-            android:maxLength="11"
-            android:singleLine="true"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:layout_height="90dp"
+            android:paddingBottom="8dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:paddingTop="8dip">
 
         <TextView
-            android:id="@+id/bookstore_booklist_item_author"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/bookstore_booklist_item_name"
-            android:layout_marginLeft="15dip"
-            android:layout_toRightOf="@+id/bookstore_booklist_item_cover"
-            android:textColor="#666666"
-            android:textSize="16sp" />
+                android:id="@+id/bookstore_booklist_item_cover"
+                android:layout_width="55dip"
+                android:layout_height="55dip"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:background="@drawable/ic_course_bg"/>
 
         <TextView
-            android:id="@+id/bookstore_booklist_item_chapter"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/bookstore_booklist_item_author"
-            android:layout_below="@+id/bookstore_booklist_item_author"
-            android:layout_toRightOf="@+id/bookstore_booklist_item_cover"
-            android:textColor="#666666"
-            android:textSize="16sp" />
+                android:id="@+id/bookstore_booklist_item_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:layout_toRightOf="@+id/bookstore_booklist_item_cover"
+                android:ellipsize="end"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/bookstore_booklist_item_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="2dip"
-            android:textColor="#ff6701"
-            android:textSize="16sp" />
+                android:id="@+id/bookstore_booklist_item_author"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bookstore_booklist_item_name"
+                android:layout_marginLeft="15dip"
+                android:layout_toRightOf="@+id/bookstore_booklist_item_cover"
+                android:textColor="#666666"
+                android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/bookstore_booklist_item_wordcount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/bookstore_booklist_item_time"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="2dip"
-            android:textColor="#ff6701"
-            android:textSize="16sp" />
+                android:id="@+id/bookstore_booklist_item_chapter"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/bookstore_booklist_item_author"
+                android:layout_below="@+id/bookstore_booklist_item_author"
+                android:layout_toRightOf="@+id/bookstore_booklist_item_cover"
+                android:textColor="#666666"
+                android:textSize="16sp"/>
+
+        <TextView
+                android:id="@+id/bookstore_booklist_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="2dip"
+                android:textColor="#ff6701"
+                android:textSize="16sp"/>
+
+        <TextView
+                android:id="@+id/bookstore_booklist_item_wordcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/bookstore_booklist_item_time"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="2dip"
+                android:textColor="#ff6701"
+                android:textSize="16sp"/>
     </RelativeLayout>
 
 </RelativeLayout>

@@ -23,6 +23,7 @@ import com.newthread.android.bean.EverydayCourse;
 import com.newthread.android.bean.SingleCourseInfo;
 
 public class BookStore_BookList extends RelativeLayout {
+    private static final String TAG = "BookStore_BookList";
 	LinearLayout layout;
 	LayoutInflater inflater;
 	Context ctx;
@@ -35,6 +36,7 @@ public class BookStore_BookList extends RelativeLayout {
 		super(context);
 		ctx = context;
 		this.everydayCourse = everydayCourse;
+        Log.v(TAG, everydayCourse.toString());
 		this.day=index;
 		Init();
 	}
@@ -99,7 +101,7 @@ public class BookStore_BookList extends RelativeLayout {
 
 		@Override
 		public int getCount() {
-			return 5;
+			return everydayCourse.getDayOfWeek().size();
 		}
 
 		@Override
@@ -120,7 +122,7 @@ public class BookStore_BookList extends RelativeLayout {
 				convertView = inflater.inflate(
 						R.layout.bookstore_booklist_item, null);
 				holder = new ViewHolder();
-				holder.bookstore_booklist_item_cover = (ImageView) convertView
+				holder.bookstore_booklist_item_cover = (TextView) convertView
 						.findViewById(R.id.bookstore_booklist_item_cover);
 				holder.bookstore_booklist_item_name = (TextView) convertView
 						.findViewById(R.id.bookstore_booklist_item_name);
@@ -137,26 +139,16 @@ public class BookStore_BookList extends RelativeLayout {
 			}
 			holder = (ViewHolder) convertView.getTag();
 			try {
-				SingleCourseInfo singleCourse = new SingleCourseInfo();
-				singleCourse = everydayCourse.getDayOfWeek().get(position);
-
-				if (position < 2) {
-					holder.bookstore_booklist_item_cover
-							.setImageResource(R.drawable.ic_course_morning);
-				} else if (position < 4) {
-					holder.bookstore_booklist_item_cover
-							.setImageResource(R.drawable.ic_course_afternoon);
-				} else {
-					holder.bookstore_booklist_item_cover
-							.setImageResource(R.drawable.ic_course_night);
-				}
+				SingleCourseInfo singleCourse = everydayCourse.getDayOfWeek().get(position);
+                holder.bookstore_booklist_item_cover.setText(1 + position + "");
 
 				// 如果有课
 				if (singleCourse.isHaveCourse()) {
-					holder.bookstore_booklist_item_name.setText(singleCourse
+                    holder.bookstore_booklist_item_name.setTextColor(ctx.getResources().getColor(R.color.black));
+                    holder.bookstore_booklist_item_name.setText(singleCourse
 							.getCourseName());
-					holder.bookstore_booklist_item_author.setText(singleCourse
-							.getNumOfDay());
+					holder.bookstore_booklist_item_author.setText("第" + singleCourse
+							.getNumOfDay() + "节");
 					holder.bookstore_booklist_item_chapter.setText(singleCourse
 							.getClassromNum());
 					holder.bookstore_booklist_item_time.setText(singleCourse
@@ -167,7 +159,11 @@ public class BookStore_BookList extends RelativeLayout {
 					holder.bookstore_booklist_item_name.setText("现在没课哦..");
 					holder.bookstore_booklist_item_name.setTextSize(20);
 					holder.bookstore_booklist_item_name.setTextColor(ctx.getResources().getColor(R.color.abs__holo_blue_light));
-				}
+                    holder.bookstore_booklist_item_author.setText("");
+                    holder.bookstore_booklist_item_chapter.setText("");
+                    holder.bookstore_booklist_item_time.setText("");
+                    holder.bookstore_booklist_item_wordcount.setText("");
+                }
 
 				convertView.setBackgroundResource(R.drawable.listitembg2);
 				convertView.setPadding(dip2px(10), dip2px(5), 0, dip2px(5));
@@ -179,7 +175,7 @@ public class BookStore_BookList extends RelativeLayout {
 	}
 
 	private static class ViewHolder {
-		public ImageView bookstore_booklist_item_cover;
+		public TextView bookstore_booklist_item_cover;
 		public TextView bookstore_booklist_item_name;
 		public TextView bookstore_booklist_item_author;
 		public TextView bookstore_booklist_item_chapter;
